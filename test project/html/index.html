@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app1">
+<head >
+
+    <!--css files-->
+    <link rel="stylesheet" href="../css/styleUsingcss.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!--Moment.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fliud">
+    <div class="row">
+        <div class="col-3 categoryPanel">
+            <h1>Category</h1>
+            <h1>Category</h1>
+            <h1>Category</h1>
+        </div>
+        <div class="col-9 mainBody">
+            <div class="container">
+                <div class="row" >
+                </div>
+                <div class="row" >
+                    <div class="col">
+                        <span class="fas fa-edit"></span>
+                    </div>
+                    <div class="col">
+                        <p>Bookmark</p>
+                    </div>
+                    <div class="col">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="fas fa-edit" ></span>
+                    </div>
+                    <div class="col">
+                        <p>Bookmark</p>
+                    </div>
+                    <div class="col">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col">
+                        <span class="fas fa-edit" ></span>
+                    </div>
+                    <div class="col">
+                        <p>Bookmark</p>
+                    </div>
+                    <div class="col">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-init="hello='world'">
+    <p>{{hello}}</p>
+    <input type="text" ng-model="hello">
+
+</div>
+<div ng-controller="TestControl">
+    <p>number:{{2+2}}</p>
+    <p>string:{{"yashi"}}</p>
+
+    <p>binding:{{TestObject.firstname}}</p>
+    <p>binding:{{TestObject.lastname}}</p>
+    <p>number binding: {{TestObject.number}}</p>
+    <button ng-click="TimesTwo()">multiply</button>
+
+    <br>
+
+    <label>First Name:</label>
+    <input type="text" ng-model="TestObject.firstname"/>
+    <br>
+    <label>Last Name:</label>
+    <input type="text" ng-model="TestObject.lastname"/>
+
+    <ya-Welcome-Msg></ya-Welcome-Msg>
+    <span ya-Welcome-Msg></span>
+</div>
+
+<script src="../lib/angular.min.js"></script>
+<script src="../js/app1.js"></script>
+<script src="../js/controllers/testControl.js"></script>
+<!--<sript src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></sript>-->
+</body>
+</html>
