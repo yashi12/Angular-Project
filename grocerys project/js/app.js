@@ -37,11 +37,11 @@ const GroceryService = function ($http) {
     let groceryservice = {};
     groceryservice.groceryItems = [
         {"id":1,"completed":false , "itemName":"milk", "date":"Fri Jul 17 2020 23:52:49"},
-        {"id":1,"completed":false , "itemName":"cookies","date":"Fri Jul 18 2020 23:52:49"},
-        {"id":1,"completed":false , "itemName":"butter", "date":"Fri Jul 27 2020 23:52:49"},
-        {"id":1,"completed":false , "itemName":"bread","date":"Fri Jul 17 2021 23:52:49"},
-        {"id":1,"completed":false , "itemName":"cheese","date":"Fri Jul 17 2020 23:53:49"},
-        {"id":1,"completed":false , "itemName":"eggs","date":"Fri Jul 07 2020 23:52:49"}
+        {"id":2,"completed":false , "itemName":"cookies","date":"Fri Jul 18 2020 23:52:49"},
+        {"id":3,"completed":false , "itemName":"butter", "date":"Fri Jul 27 2020 23:52:49"},
+        {"id":4,"completed":false , "itemName":"bread","date":"Fri Jul 17 2021 23:52:49"},
+        {"id":5,"completed":false , "itemName":"cheese","date":"Fri Jul 17 2020 23:53:49"},
+        {"id":6,"completed":false , "itemName":"eggs","date":"Fri Jul 07 2020 23:52:49"}
     ];
 
     // $http.get("/data/dataServer.json")
