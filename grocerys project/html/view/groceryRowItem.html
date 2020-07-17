@@ -1,0 +1,10 @@
+<button class="btn btn-success btn-sm pull-left" ng-click="toggleCheckState(item)">
+    <i class="fa " ng-class="item.completed ? 'fa-check-square': 'fa-minus-square'" aria-hidden="true"></i>
+</button>
+<!--    <i class="fa fa-check-square " aria-hidden="true"></i></button>-->
+<span class=" groceryItemName" ng-class="{strike:item.completed}">{{item.itemName | uppercase}}</span>
+<button class="btn-sm btn btn-danger pull-right" ng-click="removeItem(item)">
+    <i class="fa fa-trash" aria-hidden="true"></i>
+</button>
+<a href="#!/addItem/edit/{{item.id}}" class="btn btn-light btn-sm pull-right">
+    <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

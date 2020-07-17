@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="groceryList">
+<head >
+    <!--    bootstrap 4.7-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--css files-->
+    <link rel="stylesheet" href="../css/mainPage.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!--Moment.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="HomeController">
+<!-- Image and text -->
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="../images/siteIcon.png" width="50" height="30" class="d-inline-block align-top" alt="">
+        {{appTitle}}
+    </a>
+</nav>
+
+<div class="containter mainItems " ng-view >
+
+</div>
+
+<script src="../lib/underscore-min.js"></script>
+<script src="../lib/angular.min.js"></script>
+<script src="../lib/angular-route.min.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>
