@@ -25,83 +25,13 @@
     <title>Title</title>
 </head>
 <body>
-<div class="container-fliud">
-    <div class="row">
-        <div class="col-3 categoryPanel">
-            <h1>Category</h1>
-            <h1>Category</h1>
-            <h1>Category</h1>
-        </div>
-        <div class="col-9 mainBody">
-            <div class="container">
-                <div class="row" >
-                </div>
-                <div class="row" >
-                    <div class="col">
-                        <span class="fas fa-edit"></span>
-                    </div>
-                    <div class="col">
-                        <p>Bookmark</p>
-                    </div>
-                    <div class="col">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <span class="fas fa-edit" ></span>
-                    </div>
-                    <div class="col">
-                        <p>Bookmark</p>
-                    </div>
-                    <div class="col">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="row" >
-                    <div class="col">
-                        <span class="fas fa-edit" ></span>
-                    </div>
-                    <div class="col">
-                        <p>Bookmark</p>
-                    </div>
-                    <div class="col">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div ng-init="hello='world'">
-    <p>{{hello}}</p>
-    <input type="text" ng-model="hello">
+<div ng-view></div>
 
-</div>
-<div ng-controller="TestControl">
-    <p>number:{{2+2}}</p>
-    <p>string:{{"yashi"}}</p>
-
-    <p>binding:{{TestObject.firstname}}</p>
-    <p>binding:{{TestObject.lastname}}</p>
-    <p>number binding: {{TestObject.number}}</p>
-    <button ng-click="TimesTwo()">multiply</button>
-
-    <br>
-
-    <label>First Name:</label>
-    <input type="text" ng-model="TestObject.firstname"/>
-    <br>
-    <label>Last Name:</label>
-    <input type="text" ng-model="TestObject.lastname"/>
-
-    <ya-Welcome-Msg></ya-Welcome-Msg>
-    <span ya-Welcome-Msg></span>
-</div>
 
 <script src="../lib/angular.min.js"></script>
-<script src="../js/app1.js"></script>
+<script src="../lib/angular-route.min.js"></script>
 <script src="../js/controllers/testControl.js"></script>
+<script src="../js/app1.js"></script>
 <!--<sript src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></sript>-->
 </body>
 </html>
