@@ -17,7 +17,7 @@
     }
 
     angular
-        .module('app', [])
+        .module('testApp', [])
         .controller('MainCtrl', MainCtrl);
 
 })();

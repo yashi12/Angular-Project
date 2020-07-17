@@ -4,27 +4,30 @@ const welcome = ()=>{
         template: "<div>How are you  ?</div>"
     }
 }
-
+const CallSecondController = ($scope)=>{
+    $scope.firstTutorial = "This is first tutorial";
+}
 angular.module('testControlModule',[])
 
-.controller('TestControl',function ($scope ) {
-    $scope.TestObject = {};
-    $scope.TestObject.firstname="yashi";
-    $scope.TestObject.lastname ="agarwal";
-    $scope.TestObject.number = 2;
+    .directive('yaWelcomeMsg',welcome)
 
-    $scope.TimesTwo = function () {
-        $scope.TestObject.number *= 2;
-    }
-})
+    .factory("Calculations",()=> {
+        let calculations={};
+        calculations.TimesTwo =(a)=> a*2;
+        calculations.PythagorasTheorem = (a,b)=> (a*a)+(b*b);
+        return calculations;
+    })
 
-.directive('yaWelcomeMsg',welcome)
+    .controller('TestControl',($scope ,Calculations) =>{
+        $scope.TestObject = {};
+        $scope.TestObject.firstname="yashi";
+        $scope.TestObject.lastname ="agarwal";
+        $scope.TestObject.number = 2;
 
-.factory("Calculations",function () {
-    let calculations={};
-    calculations.TimesTwo =function (a) {
-        return a*2;
-    };
-    return calculations;
-});
+        $scope.TimesTwo = ()=> {
+            $scope.TestObject.number = Calculations.TimesTwo($scope.TestObject.number);
+        }
+        Calculations.PythagorasTheorem()
+    })
+    .controller('SecondController',CallSecondController)
 
