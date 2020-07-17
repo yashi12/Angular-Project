@@ -1,20 +1,26 @@
-<div class="containter formMainBody" >
+<div class="containter formMainBody">
     <div class="jumbotron">
         <h1 class="display-4">Add grocery items!!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     </div>
-    <form>
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Enter item name">
+    <form name="groceryForm" class="text-center">
+        <!--        <p><b>dirty:</b>{{groceryForm.$dirty}}</p>-->
+        <!--        <p><b>pristine:</b>{{groceryForm.$pristine}}</p>-->
+        <!--        <p><b>valid:</b>{{groceryForm.$valid}}</p>-->
+
+        <div class="alert alert-danger" role="alert" ng-show="groceryForm.$dirty && !groceryForm.$valid">
+            Please enter valid item!
         </div>
-        <a href="#/" class="form-control btn-success">
+        <div class="form-group">
+            <input type="text" ng-pattern="/^[a-zA-Z ]*$/" class="form-control" placeholder="Enter item name"
+                   ng-model="groceryItem.itemName" required>
+        </div>
+        <button type="button" class="form-control btn-success" ng-click="groceryForm.$valid  && save()">
             <i class="fa fa-check-square " aria-hidden="true"></i>
-        </a>
+        </button>
         <br>
-        <a href="#/" class="form-control btn-danger">
-            <i class="fa fa-trash" aria-hidden="true"></i>
+        <a href="#!/" class="form-control btn-secondary">
+            <i class="fa fa-trash" aria-hidden="true">Cancel</i>
         </a>
     </form>
+
 </div>

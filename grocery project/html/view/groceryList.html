@@ -1,11 +1,13 @@
-<div class="col-xs-12" ng-controller="GroceryListItemController">
-    <a href="#/addItem" class="btn btn-secondary btn form-control">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-    <ul ng-repeat="item in groceryItems | orderBy:'date'" class="list-group list-group-flush">
+<!--<div class="col-xs-12" ng-controller="GroceryListItemController">-->
+<div class="col-xs-12">
+    <a href="#!/addItem" class="btn btn-info btn form-control">
+        <svg width="2em" height="2em" viewBox="2 2 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+            <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+        </svg> Add Grocery Item</a>
+    <ul ng-repeat="item in groceryItems | orderBy:'-date'" class="list-group list-group-flush">
         <li class="list-group-item text-center">
-<!--            <button class="btn btn-success btn-sm pull-left">-->
-<!--                <i class="fa fa-check-square " aria-hidden="true"></i></button>-->
-            <span class=" groceryItemName">{{item.itemName | uppercase}}</span>
+            <td-grocery-row-item-view></td-grocery-row-item-view>
         </li>
     </ul>
 </div>
