@@ -1,5 +1,5 @@
 angular
-.module('app1',['ngRoute','testControlModule'])
+.module('mainApp',['ngRoute','testControlModule'])
     .config(($routeProvider)=>{
         $routeProvider
             .when('/',{
