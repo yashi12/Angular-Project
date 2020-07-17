@@ -35,19 +35,26 @@ const GroceryListItemController = function($scope,$routeParams,$location,Grocery
 const GroceryService = function ($http) {
 
     let groceryservice = {};
-    groceryservice.groceryItems = [];
+    groceryservice.groceryItems = [
+        {"id":1,"completed":false , "itemName":"milk", "date":"Fri Jul 17 2020 23:52:49"},
+        {"id":1,"completed":false , "itemName":"cookies","date":"Fri Jul 18 2020 23:52:49"},
+        {"id":1,"completed":false , "itemName":"butter", "date":"Fri Jul 27 2020 23:52:49"},
+        {"id":1,"completed":false , "itemName":"bread","date":"Fri Jul 17 2021 23:52:49"},
+        {"id":1,"completed":false , "itemName":"cheese","date":"Fri Jul 17 2020 23:53:49"},
+        {"id":1,"completed":false , "itemName":"eggs","date":"Fri Jul 07 2020 23:52:49"}
+    ];
 
-    $http.get("/data/dataServer.json")
-        .then(function (response) {
-            console.log(response);
-            groceryservice.groceryItems = response.data;
-
-            for(let item in groceryservice.groceryItems){
-                groceryservice.groceryItems[item].date =new Date(groceryservice.groceryItems[item].date);
-            }
-        },function (reason) {
-            alert(reason);
-        })
+    // $http.get("/data/dataServer.json")
+    //     .then(function (response) {
+    //         console.log(response);
+    //         groceryservice.groceryItems = response.data;
+    //
+    //         for(let item in groceryservice.groceryItems){
+    //             groceryservice.groceryItems[item].date =new Date(groceryservice.groceryItems[item].date);
+    //         }
+    //     },function (reason) {
+    //         alert(reason);
+    //     })
 
 
     groceryservice.GetNewId = function(){
@@ -73,6 +80,7 @@ const GroceryService = function ($http) {
             updateItem.date = new Date();
             updateItem.completed = true;
         }else {
+
             entry.id = groceryservice.GetNewId();
             groceryservice.groceryItems.push(entry);
         }
