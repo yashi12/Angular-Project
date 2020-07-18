@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="groceryList">
+<head>
+    <!--    bootstrap 4.7-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--css files-->
+    <link rel="stylesheet" href="../css/mainPage.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!--Moment.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="HomeController">
+<!-- Image and text -->
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="../images/siteIcon.png" width="50" height="30" class="d-inline-block align-top" alt="">
+        {{appTitle}}
+    </a>
+</nav>
+
+<div class="containter mainItems " ng-controller="GroceryListItemController">
+    <div class="row">
+        <!--        displaying categories-->
+        <div class="col-3 categories">
+            <a href="#" ng-click="SetCurrentCategory(null)">
+                <img src="../images/groceryCategoryPanel.jpg" alt="Grocery"></a>
+            <ul class="list-group list-group-flush">
+                <li ng-repeat="category in categorieItems" class="list-group-item text-center"
+                    ng-class="'active':IsCurrentCategory(category)">
+                    <a href="#" ng-click="SetCurrentCategory(category); "><h4>{{category.name}}</h4></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-9">
+            <!--        displaying bookmarks/items-->
+            <ul class="list-group list-group-flush">
+                <li ng-class="{'active':isSelecteditem(item.id)}" ng-repeat="item in groceryItems | filter:{category:currentCategory.name}"
+                    class="list-group-item text-center">
+                    <!--                    <button class="btn btn-success btn-sm pull-left">-->
+                    <!--                        <i class="fa fa-check-square " aria-hidden="true"></i></button>-->
+                    <button class="btn btn-secondary btn pull-left" ng-click=" setEditItem(item); StartEditing();">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                    <button type="button" class="close pull-right" ng-click="deleteItem(item)" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <span  class=" groceryItemName">{{item.itemName | uppercase}}</span>
+                </li>
+            </ul>
+            <hr>
+            <!--            creating new item-->
+            <div ng-if="ShouldShowCreating()">
+                <button type="button"  class="btn btn-link" ng-click="StartCreating();">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <span>ADD ITEM</span>
+                </button>
+                <div ng-if="isCreating">
+                    Create a bookmark!
+                    <form class="text-center form" ng-submit="createItem(newItem)">
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="newItem.itemName" placeholder="Enter item name">
+                        </div>
+                        <button type="submit" class="btn btn-success pull-left" >
+                            <i class="fa fa-check-square " aria-hidden="true"></i>
+                            <span>Save</span>
+                        </button>
+                        <button type="button"  class="btn btn-secondary pull-right" ng-click="CancelCreating();">
+                            <span>Cancel</span>
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+            <!--            editing new item-->
+            <div ng-if="ShouldShowEditing()">
+                Editing current item
+                <form class="text-center form" ng-submit="updateItem(currentItem)">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="currentItem.itemName" placeholder="Enter item name">
+                    </div>
+                    <button type="submit" class="btn btn-success pull-left">
+                        <i class="fa fa-check-square " aria-hidden="true"></i>
+                        <span>Save</span>
+                    </button>
+                    <button type="button"  class="btn btn-secondary pull-right" ng-click="CancelEditing();">
+                        <span>Cancel</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>-->
+
+<script src="../lib/angular.min.js"></script>
+<script src="../lib/angular-route.min.js"></script>
+<script src="../lib/underscore-min.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>
