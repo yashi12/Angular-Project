@@ -28,6 +28,7 @@
 </head>
 
 <body ng-controller="GroceryListItemController">
+<!--<body>-->
 <!-- Image and text -->
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">
@@ -45,11 +46,8 @@
         </div>
         <div class="col-9" ui-view="items">
             <!--        displaying bookmarks/items-->
-
         </div>
-
     </div>
-
 </div>
 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>-->
@@ -59,16 +57,16 @@
 <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
 <!-- <script src="../lib/angular-route.min.js"></script> -->
 <script src="lib/underscore-min.js"></script>
-<script src="app.js"></script>
 
-
-<script src="categories/categories.js"></script>
-<script src="categories/items/items.js"></script>
 <script src="categories/items/create/items-create.js"></script>
 <script src="categories/items/edit/items-edit.js"></script>
 
 <script src="common/models/categories-model.js"></script>
 <script src="common/models/items-model.js"></script>
+<script src="categories/categories.js"></script>
+<script src="categories/items/items.js"></script>
+<script src="app.js"></script>
+
 </body>
 
 </html>

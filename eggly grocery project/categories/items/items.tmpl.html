@@ -1,7 +1,8 @@
-<div >
+<div>
     {{currentCategoryName}}
     <ul class="list-group list-group-flush">
-        <li ng-class="{'active':isSelecteditem(item.id)}" ng-repeat="item in groceryItems | filter:{ category : currentCategory.name}"
+        <li ng-class="{'active':isSelecteditem(item.id)}"
+            ng-repeat="item in groceryItems | filter:{ category : currentCategory.name}"
             class="list-group-item text-center">
             <!--                    <button class="btn btn-success btn-sm pull-left">-->
             <!--                        <i class="fa fa-check-square " aria-hidden="true"></i></button>-->
@@ -10,13 +11,13 @@
             <button type="button" class="close pull-right" ng-click="deleteItem(item)" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <span  class=" groceryItemName">{{item.itemName | uppercase}}</span>
+            <span class=" groceryItemName">{{item.itemName | uppercase}}</span>
         </li>
     </ul>
     <hr>
     <!--            creating new item-->
     <div ng-if="ShouldShowCreating()">
-        <button type="button"  class="btn btn-link" ng-click="StartCreating();">
+        <button type="button" class="btn btn-link" ng-click="StartCreating();">
             <i class="fa fa-plus" aria-hidden="true"></i>
             <span>ADD ITEM</span>
         </button>
@@ -26,11 +27,11 @@
                 <div class="form-group">
                     <input type="text" class="form-control" ng-model="newItem.itemName" placeholder="Enter item name">
                 </div>
-                <button type="submit" class="btn btn-success pull-left" >
+                <button type="submit" class="btn btn-success pull-left">
                     <i class="fa fa-check-square " aria-hidden="true"></i>
                     <span>Save</span>
                 </button>
-                <button type="button"  class="btn btn-secondary pull-right" ng-click="CancelCreating();">
+                <button type="button" class="btn btn-secondary pull-right" ng-click="CancelCreating();">
                     <span>Cancel</span>
                 </button>
             </form>
@@ -49,10 +50,9 @@
                 <i class="fa fa-check-square " aria-hidden="true"></i>
                 <span>Save</span>
             </button>
-            <button type="button"  class="btn btn-secondary pull-right" ng-click="CancelEditing();">
+            <button type="button" class="btn btn-secondary pull-right" ng-click="CancelEditing();">
                 <span>Cancel</span>
             </button>
         </form>
     </div>
-
 </div>
