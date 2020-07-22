@@ -3,7 +3,10 @@ angular.module('categories.items.edit', [])
         console.log("edit");
         $stateProvider
             .state('eggly.categories.items.edit', {
-                url: '/items/edit/:id',
+                url: '/items/edit',
+                params:{
+                  id:null
+                },
                 templateUrl: 'categories/items/edit/items-edit-tmpl.html',
                 controller: 'EditItemCtrl as editItemCtrl'
             })
