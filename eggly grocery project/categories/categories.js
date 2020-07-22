@@ -1,26 +1,25 @@
-const categoriesApp = angular.module('categories', ['ui.router']);
+const categoriesApp = angular.module('categories',
+    ['ui.router','categories.items','eggly.models.categories']);
 categoriesApp.config(function ($stateProvider) {
-    console.log("categories.js");
     $stateProvider
         .state('eggly.categories', {
             url: '/',
             views: {
                 'categories@': {
-                    controller: 'CategoriesCtrl',
+                    controller: 'CategoriesListCtrl as categoriesListCtrl',
                     templateUrl: 'categories/categories.tmpl.html'
                 },
                 'items@': {
-                    controller: 'ItemsCtrl',
+                    controller: 'ItemsListCtrl as itemsListCtrl',
                     templateUrl: 'categories/items/items.tmpl.html'
                 }
             }
         })
-    console.log("end categories.js");
 })
-categoriesApp.controller('CategoriesCtrl', function CategoriesCtrl($scope) {
-
-});
-
-categoriesApp.controller('ItemsCtrl', function ItemsCtrl($scope) {
-
+categoriesApp.controller('CategoriesListCtrl', function CategoriesCtrl(CategoriesModel) {
+    let categoriesListCtrl =this;
+    CategoriesModel.getCategories()
+        .then(function (result) {
+            categoriesListCtrl.categorieItems = result;
+        })
 });

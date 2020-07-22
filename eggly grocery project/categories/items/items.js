@@ -5,18 +5,28 @@ angular.module('categories.items',[
     'categories.items.edit'
 
 ])
-    // .config(function ($stateProvider) {
-    //     $stateProvider
-    //         .state('eggly.categories.items',{
-    //             url:'categories/:category',
-    //             views:{
-    //                 'items@':{
-    //                     templateUrl:'categories/items/items.tmpl.html',
-    //                     controller:'ItemsCtrl'
-    //                 }
-    //             }
-    //         });
-    // })
-    // .controller('ItemsCtrl',function ($scope,$stateParams) {
-    //     $scope.currentCategoryName = $stateParams.category;
-    // });
+    .config(function ($stateProvider) {
+        $stateProvider
+            .state('eggly.categories.items',{
+                url:'categories/:category',
+                views:{
+                    'items@':{
+                        templateUrl:'categories/items/items.tmpl.html',
+                        controller:'ItemsListCtrl as itemsListCtrl'
+                    }
+                }
+            });
+    })
+    .controller('ItemsListCtrl',function ($stateParams,ItemsModel,CategoriesModel) {
+        let itemsListCtrl= this;
+
+        CategoriesModel.SetCurrentCategory($stateParams.category);
+
+        itemsListCtrl.currentCategoryName = $stateParams.category;
+        ItemsModel.getItems()
+            .then(function (items) {
+                itemsListCtrl.groceryItems =items;
+            });
+        itemsListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
+        itemsListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
+    });

@@ -1,12 +1,10 @@
 <div>
-    {{currentCategoryName}}
+    {{itemsListCtrl.currentCategoryName}}
+    {{itemsListCtrl.getCurrentCategoryName()}}
     <ul class="list-group list-group-flush">
-        <li ng-class="{'active':isSelecteditem(item.id)}"
-            ng-repeat="item in groceryItems | filter:{ category : currentCategory.name}"
+        <li ng-repeat="item in itemsListCtrl.groceryItems | filter:{ category : itemsListCtrl.getCurrentCategoryName()}"
             class="list-group-item text-center">
-            <!--                    <button class="btn btn-success btn-sm pull-left">-->
-            <!--                        <i class="fa fa-check-square " aria-hidden="true"></i></button>-->
-            <button class="btn btn-secondary btn pull-left" ng-click=" setEditItem(item); StartEditing();">
+            <button class="btn btn-secondary btn pull-left" ui-sref="eggly.categories.items.edit({id:item.id})">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <button type="button" class="close pull-right" ng-click="deleteItem(item)" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -16,43 +14,19 @@
     </ul>
     <hr>
     <!--            creating new item-->
-    <div ng-if="ShouldShowCreating()">
-        <button type="button" class="btn btn-link" ng-click="StartCreating();">
+    <!--    <ui-view ng-if="itemsListCtrl.getCurrentCategory()">-->
+    <ui-view ng-if="itemsListCtrl.getCurrentCategory()">
+        <button type="button" class="btn btn-link" ui-sref="eggly.categories.items.create">
             <i class="fa fa-plus" aria-hidden="true"></i>
             <span>ADD ITEM</span>
         </button>
-        <div ng-if="isCreating">
-            Create a bookmark!
-            <form class="text-center form" ng-submit="createItem(newItem)">
-                <div class="form-group">
-                    <input type="text" class="form-control" ng-model="newItem.itemName" placeholder="Enter item name">
-                </div>
-                <button type="submit" class="btn btn-success pull-left">
-                    <i class="fa fa-check-square " aria-hidden="true"></i>
-                    <span>Save</span>
-                </button>
-                <button type="button" class="btn btn-secondary pull-right" ng-click="CancelCreating();">
-                    <span>Cancel</span>
-                </button>
-            </form>
-
-        </div>
-
-    </div>
+        <!--        <div ng-if="isCreating">-->
+        <!--        Create a bookmark!-->
+        <!--        </div>-->
+    </ui-view>
     <!--            editing new item-->
-    <div ng-if="ShouldShowEditing()">
-        Editing current item
-        <form class="text-center form" ng-submit="updateItem(currentItem)">
-            <div class="form-group">
-                <input type="text" class="form-control" ng-model="currentItem.itemName" placeholder="Enter item name">
-            </div>
-            <button type="submit" class="btn btn-success pull-left">
-                <i class="fa fa-check-square " aria-hidden="true"></i>
-                <span>Save</span>
-            </button>
-            <button type="button" class="btn btn-secondary pull-right" ng-click="CancelEditing();">
-                <span>Cancel</span>
-            </button>
-        </form>
-    </div>
+    <!--    <div ng-if="ShouldShowEditing()">-->
+    <!--        Editing current item-->
+    <!--        -->
+    <!--    </div>-->
 </div>

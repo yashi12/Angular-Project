@@ -1,10 +1,10 @@
 <div>
-    <a href="#" ng-click="SetCurrentCategory(null)">
+    <a ui-sref="eggly.categories">
         <img src="images/groceryCategoryPanel.jpg" alt="Grocery">
     </a>
     <ul class="list-group list-group-flush">
-        <li ng-repeat="category in categorieItems" class="list-group-item text-center">
-            <a href="#" ng-click="SetCurrentCategory(category); "><h4>{{category.name}}</h4></a>
+        <li ng-repeat="category in categoriesListCtrl.categorieItems" class="list-group-item text-center">
+            <a  ui-sref="eggly.categories.items({category:category.name})"  ><h4>{{category.name}}</h4></a>
         </li>
     </ul>
 </div>
