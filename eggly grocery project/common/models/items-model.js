@@ -51,5 +51,14 @@ angular.module('eggly.models.items', [])
             groceryItems.push(item);
             console.log(groceryItems.length);
         }
+        model.deleteItem = function (item) {
+            let index = _.findIndex(groceryItems, function (curritem) {
+                return curritem.id == item.id;
+            });
+            groceryItems.splice(index,1);
+            // _.remove(groceryItems,function (curritem) {
+            //     return curritem.id == item.id;
+            // })
+        }
     })
 ;

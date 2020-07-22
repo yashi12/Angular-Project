@@ -1,12 +1,12 @@
 <div>
     {{itemsListCtrl.currentCategoryName}}
-    {{itemsListCtrl.getCurrentCategoryName()}}
+<!--    {{itemsListCtrl.getCurrentCategoryName()}}-->
     <ul class="list-group list-group-flush">
         <li ng-repeat="item in itemsListCtrl.groceryItems | filter:{ category : itemsListCtrl.getCurrentCategoryName()}"
             class="list-group-item text-center">
             <button class="btn btn-secondary btn pull-left" ui-sref="eggly.categories.items.edit({id:item.id})">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <button type="button" class="close pull-right" ng-click="deleteItem(item)" aria-label="Close">
+            <button type="button" class="close pull-right" ng-click="itemsListCtrl.deleteItem(item)" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             <span class=" groceryItemName">{{item.itemName | uppercase}}</span>
@@ -15,6 +15,7 @@
     <hr>
     <!--            creating new item-->
     <!--    <ui-view ng-if="itemsListCtrl.getCurrentCategory()">-->
+
     <ui-view ng-if="itemsListCtrl.getCurrentCategory()">
         <button type="button" class="btn btn-link" ui-sref="eggly.categories.items.create">
             <i class="fa fa-plus" aria-hidden="true"></i>

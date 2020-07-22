@@ -29,4 +29,5 @@ angular.module('categories.items',[
             });
         itemsListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
         itemsListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
+        itemsListCtrl.deleteItem = ItemsModel.deleteItem;
     });
