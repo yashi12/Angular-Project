@@ -28,10 +28,10 @@ angular.module('eggly.models.items', [])
             }
             return deferred.promise;
         }
-        model.getItems = ()=> {
+        model.getItems = function(){
             let deferred = $q.defer();
             if(groceryItems){
-                deferred.resolve(findItem(groceryItems));
+                deferred.resolve(groceryItems);
             }else {
                 $http.get(URLS.FETCH).then(function (groceryItems) {
                         deferred.resolve(cacheItems(groceryItems));

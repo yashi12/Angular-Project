@@ -16,8 +16,8 @@ angular.module('eggly.models.categories', [])
             return categorieItems;
         }
 
-        model.getCategories = () => {
-            return (categorieItems)?$q.when(categorieItems) : $http.get(URLS.FETCH).then(cacheCategories);
+        model.getCategories = function() {
+            return (categorieItems)? $q.when(categorieItems) : $http.get(URLS.FETCH).then(cacheCategories);
         }
 
         model.getCategoryByName = function (categoryName) {
@@ -30,10 +30,11 @@ angular.module('eggly.models.categories', [])
             }
             if(categorieItems){
                 deferred.resolve(findCategory());
+                console.log(findCategory());
             }
             else {
                 model.getCategories()
-                    .then(function (result) {
+                    .then(function () {
                         deferred.resolve(findCategory());
                     })
             }
@@ -43,6 +44,8 @@ angular.module('eggly.models.categories', [])
         model.SetCurrentCategory = function (categoryName) {
             return model.getCategoryByName(categoryName)
                 .then(function (category) {
+                    console.log("category");
+                    console.log(category);
                     currentCategory = category;
                 })
         }
