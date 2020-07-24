@@ -1,33 +1,60 @@
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div>
     {{itemsListCtrl.currentCategoryName}}
-<!--    {{itemsListCtrl.getCurrentCategoryName()}}-->
+    <!--    {{itemsListCtrl.getCurrentCategoryName()}}-->
     <ul class="list-group list-group-flush">
         <li ng-repeat="item in itemsListCtrl.groceryItems | filter:{ category : itemsListCtrl.getCurrentCategoryName()}"
             class="list-group-item text-center">
-            <button class="btn btn-secondary btn pull-left" ui-sref="eggly.categories.items.edit({id:item.id})">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <button type="button" class="close pull-right" ng-click="itemsListCtrl.deleteItem(item)" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <span class=" groceryItemName">{{item.itemName | uppercase}}</span>
+            <div id="item-data"  data-toggle="modal" data-target="#exampleModalCenter"
+                 onclick="showDetails()" data-what="{{item }}" >
+                <button class="btn btn-secondary btn pull-left" ui-sref="eggly.categories.items.edit({id:item.id})">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                <button type="button" class="close pull-right" ng-click="itemsListCtrl.deleteItem(item)"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <span class=" groceryItemName" >{{item.itemName | uppercase}}
+                </span>
+            </div>
+
         </li>
     </ul>
     <hr>
     <!--            creating new item-->
     <!--    <ui-view ng-if="itemsListCtrl.getCurrentCategory()">-->
 
+
     <ui-view ng-if="itemsListCtrl.getCurrentCategory()">
+        <!-- Button trigger modal -->
+        <!--        <a class="btn btn-link" data-toggle="modal" >-->
+        <!--        <button type="button" class="btn btn-link"  ui-sref="eggly.categories.items.create">-->
+        <!--            <i class="fa fa-plus" aria-hidden="true"></i>-->
+        <!--            <span>ADD ITEM</span>-->
+        <!--        </button>-->
+
         <button type="button" class="btn btn-link" ui-sref="eggly.categories.items.create">
             <i class="fa fa-plus" aria-hidden="true"></i>
             <span>ADD ITEM</span>
         </button>
-        <!--        <div ng-if="isCreating">-->
-        <!--        Create a bookmark!-->
-        <!--        </div>-->
+
     </ui-view>
-    <!--            editing new item-->
-    <!--    <div ng-if="ShouldShowEditing()">-->
-    <!--        Editing current item-->
-    <!--        -->
-    <!--    </div>-->
 </div>
