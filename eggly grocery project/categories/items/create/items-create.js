@@ -1,17 +1,17 @@
 angular.module('categories.items.create', ['ui.bootstrap'])
-    .config(function ($stateProvider) {
-        console.log("modal state");
-        $stateProvider
-
-            .state('eggly.categories.items.create', {
-                url: '/items/create',
-                templateUrl: 'categories/items/create/items-create-tmpl.html',
-                controller: 'CreateItemCtrl as createItemCtrl'
-            })
-    })
+    // .config(function ($stateProvider) {
+    //     console.log("modal state");
+    //     $stateProvider
+    //
+    //         .state('eggly.categories.items.create', {
+    //             url: '/items/create',
+    //             templateUrl: 'categories/items/create/items-create-tmpl.html',
+    //             controller: 'CreateItemCtrl as createItemCtrl'
+    //         })
+    // })
     .controller('CreateItemCtrl', ['$state', '$stateParams', 'ItemsModel', '$uibModal','$rootScope', function ($state, $stateParams, ItemsModel, $uibModal,$rootScope) {
         let createItemCtrl = this;
-        createItemCtrl.data = "random data";
+        // createItemCtrl.data = "random data";
 
         createItemCtrl.open = function () {
             console.log("create");
@@ -33,34 +33,34 @@ angular.module('categories.items.create', ['ui.bootstrap'])
         };
 
 
-        function returnToItems() {
-            // $state.go(ModalService.getPreviousState(),{category:$stateParams.category});
-            $state.go('eggly.categories.items', {
-                category: $stateParams.category
-            })
-            // createItemCtrl.$apply();
-        }
+        // function returnToItems() {
+        //     // $state.go(ModalService.getPreviousState(),{category:$stateParams.category});
+        //     $state.go('eggly.categories.items', {
+        //         category: $stateParams.category
+        //     })
+        //     // createItemCtrl.$apply();
+        // }
 
-        function CancelCreating() {
-            console.log("cancel creating");
-            // createItemCtrl.$apply();
-            return returnToItems();
-        }
-
+        // function CancelCreating() {
+        //     console.log("cancel creating");
+        //     // createItemCtrl.$apply();
+        //     return returnToItems();
+        // }
+        //
         function createItem(item) {
             console.log("ko");
             ItemsModel.createItem(item);
             // returnToItems();
         }
-
-        function resetForm() {
-            createItemCtrl.newItem = {
-                completed: true,
-                itemName: '',
-                date: new Date(),
-                category: $stateParams.category
-            }
-        }
+        //
+        // function resetForm() {
+        //     createItemCtrl.newItem = {
+        //         completed: true,
+        //         itemName: '',
+        //         date: new Date(),
+        //         category: $stateParams.category
+        //     }
+        // }
 
         // createItemCtrl.CancelCreating = CancelCreating;
         // createItemCtrl.createItem = createItem;
