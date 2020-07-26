@@ -9,11 +9,6 @@ EditPersonDialogModel.prototype.open = function (item) {
 EditPersonDialogModel.prototype.close = function () {
     this.visible = false;
 };
-// EditPersonDialogModel.prototype.save = function () {
-//     console.log("update");
-//     updateItem(this.item);
-// };
-
 var app = angular.module('categories.items', [
     'eggly.models.categories',
     'eggly.models.items',
@@ -33,7 +28,7 @@ app.config(function ($stateProvider) {
             }
         });
 })
-    .controller('ItemsListCtrl', ['$stateParams', 'ItemsModel', 'CategoriesModel',function ($stateParams, ItemsModel, CategoriesModel) {
+    .controller('ItemsListCtrl', ['$stateParams', 'ItemsModel', 'CategoriesModel', function ($stateParams, ItemsModel, CategoriesModel) {
         let itemsListCtrl = this;
         console.log(" start edit dialog");
         itemsListCtrl.editDialog = new EditPersonDialogModel();
@@ -52,20 +47,13 @@ app.config(function ($stateProvider) {
 
         itemsListCtrl.showDetails = function () {
         }
-        itemsListCtrl.updateItem =function() {
+        itemsListCtrl.updateItem = function () {
             console.log("update");
             itemsListCtrl.changedItem = angular.copy(editPersonDialog.item);
             ItemsModel.updateItem(itemsListCtrl.changedItem);
             // returnToItems();
         }
-
-
     }])
-    // .directive('createDirective', function () {
-    //     return {
-    //         templateUrl: 'categories/items/create/items-create-tmpl.html'
-    //     };
-    // });
 
 function showDetails() {
     console.log("func")
@@ -76,7 +64,6 @@ function showDetails() {
         var modal = $(this)
         modal.find('.modal-title').text('Item chosen: ' + recipient.itemName)
         modal.find('.modal-body').text('Category: ' + recipient.category + "\n" + 'Date: ' + recipient.date)
-        // modal.find('.modal-body input').val(recipient)
     })
 }
 
@@ -87,11 +74,11 @@ app.directive('editPersonDialog', [function () {
             model: '=',
         },
         link: function (scope, element, attributes) {
-            console.log("ele",element);
+            console.log("ele", element);
             scope.$watch('model.visible', function (newValue) {
                 console.log('model.visible', newValue);
                 var modalElement = element.find('.modal');
-                console.log("modal element",modalElement);
+                console.log("modal element", modalElement);
                 modalElement.modal(newValue ? 'show' : 'hide');
             });
 
