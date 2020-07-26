@@ -53,7 +53,7 @@ angular.module('eggly.models.items', [])
         model.createItem = function (item) {
             item.id = groceryItems.length + 1;
             groceryItems.push(item);
-            console.log(groceryItems.length);
+            console.log(groceryItems);
         }
         model.deleteItem = function (item) {
             let index = _.findIndex(groceryItems, function (curritem) {

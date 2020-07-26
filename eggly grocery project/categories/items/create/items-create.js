@@ -19,12 +19,13 @@ angular.module('categories.items.create', ['ui.bootstrap'])
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 templateUrl: 'categories/items/create/model-create-tmpl.html',
-                controller: 'ModalInstanceCtrl',
-                controllerAs: 'pc'
+                controller: 'ModalInstanceCreateCtrl',
+                controllerAs: 'modalInstanceCreateCtrl'
 
             });
             console.log(modalInstance);
             modalInstance.result.then(function () {
+                createItem(createItemCtrl.newItemCreated);
                 console.log("saved item");
             }).catch(function (reason) {
                 console.log(reason);
@@ -49,7 +50,7 @@ angular.module('categories.items.create', ['ui.bootstrap'])
         function createItem(item) {
             console.log("ko");
             ItemsModel.createItem(item);
-            returnToItems();
+            // returnToItems();
         }
 
         function resetForm() {
@@ -61,30 +62,37 @@ angular.module('categories.items.create', ['ui.bootstrap'])
             }
         }
 
-        createItemCtrl.CancelCreating = CancelCreating;
-        createItemCtrl.createItem = createItem;
-        resetForm();
+        // createItemCtrl.CancelCreating = CancelCreating;
+        // createItemCtrl.createItem = createItem;
+        // resetForm();
 
         $rootScope.$on("parent", function(event,data){
             console.log("save");
-            createItemCtrl.newItem.itemName = data;
-            createItem(createItemCtrl.newItem);
+            console.log("state params",$stateParams);
+            createItemCtrl.newItemCreated = {
+                completed: true,
+                itemName: data,
+                date: new Date(),
+                category: $stateParams.category
+            }
             console.log("update",data);
         });
 
     }]);
-angular.module('categories.items.create').controller('ModalInstanceCtrl',['$uibModalInstance','$rootScope', function ($uibModalInstance,$rootScope) {
-    var pc = this;
-    pc.data="";
+angular.module('categories.items.create').controller('ModalInstanceCreateCtrl',['$uibModalInstance','$rootScope', function ($uibModalInstance,$rootScope) {
+    var modalInstanceCreateCtrl = this;
+    modalInstanceCreateCtrl.data="";
     console.log("modal instace pc");
-    pc.ok = function () {
+    modalInstanceCreateCtrl.ok = function () {
         console.log("ok");
-        console.log(pc.data);
-        $rootScope.$emit("parent", pc.data);
         $uibModalInstance.close();
     };
+    modalInstanceCreateCtrl.save = function () {
+        console.log(modalInstanceCreateCtrl.data);
+        $rootScope.$emit("parent", modalInstanceCreateCtrl.data);
+    };
 
-    pc.cancel = function () {
+    modalInstanceCreateCtrl.cancel = function () {
        console.log("cancel");
         // alert("You clicked the cancel button.");
         $uibModalInstance.dismiss('dismissed');
