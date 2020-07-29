@@ -1,6 +1,6 @@
 angular.module('categories.items.create', ['ui.bootstrap'])
-    .controller('CreateItemCtrl', ['$state', '$stateParams', 'ItemsModel', '$uibModal', '$rootScope',
-        function ($state, $stateParams, ItemsModel, $uibModal, $rootScope) {
+    .controller('CreateItemCtrl', [ '$stateParams', 'ItemsModel', '$uibModal',
+        function ( $stateParams, ItemsModel, $uibModal) {
         let createItemCtrl = this;
         createItemCtrl.open = function () {
             console.log("create");

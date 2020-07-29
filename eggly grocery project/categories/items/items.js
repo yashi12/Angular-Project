@@ -1,22 +1,11 @@
-let EditPersonDialogModel = function () {
-    this.visible = false;
-};
-EditPersonDialogModel.prototype.open = function (item) {
-    console.log(this);
-    this.item = angular.copy(item);
-    this.visible = true;
-};
-EditPersonDialogModel.prototype.close = function () {
-    this.visible = false;
-};
-var app = angular.module('categories.items', [
+var categories_items = angular.module('categories.items', [
     'eggly.models.categories',
     'eggly.models.items',
     'categories.items.create',
     'categories.items.edit'
 
 ]);
-app.config(function ($stateProvider) {
+categories_items.config(function ($stateProvider) {
     $stateProvider
         .state('eggly.categories.items', {
             url: 'categories/:category',
@@ -30,59 +19,84 @@ app.config(function ($stateProvider) {
 })
     .controller('ItemsListCtrl', ['$stateParams', 'ItemsModel', 'CategoriesModel', '$uibModal',
         function ($stateParams, ItemsModel, CategoriesModel, $uibModal) {
-        let itemsListCtrl = this;
-        // console.log(" start edit dialog");
-        // itemsListCtrl.editDialog = new EditPersonDialogModel();
-        // console.log("edit dialog");
+            let itemsListCtrl = this;
 
-        CategoriesModel.SetCurrentCategory($stateParams.category);
+            CategoriesModel.SetCurrentCategory($stateParams.category);
 
-        itemsListCtrl.currentCategoryName = $stateParams.category;
-        ItemsModel.getItems()
-            .then(function (items) {
-                itemsListCtrl.groceryItems = items;
-            });
-        itemsListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
-        itemsListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
-        itemsListCtrl.deleteItem = ItemsModel.deleteItem;
+            itemsListCtrl.currentCategoryName = $stateParams.category;
+            ItemsModel.getItems()
+                .then(function (items) {
+                    itemsListCtrl.groceryItems = items;
+                });
+            itemsListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
+            itemsListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
+            itemsListCtrl.deleteItem = ItemsModel.deleteItem;
 
-        itemsListCtrl.showDetails = function () {
-        }
-        itemsListCtrl.updateItem = function (message) {
-            console.log("update");
-            alert("update");
-            // itemsListCtrl.changedItem = angular.copy(editPersonDialog.item);
-            // ItemsModel.updateItem(itemsListCtrl.changedItem);
-            // returnToItems();
-        }
+            itemsListCtrl.showDetails = function () {
+            }
+            itemsListCtrl.updateItem = function (message) {
+                console.log("update");
+                alert("update");
+                // itemsListCtrl.changedItem = angular.copy(editPersonDialog.item);
+                // ItemsModel.updateItem(itemsListCtrl.changedItem);
+                // returnToItems();
+            }
 
-        // editing part
-        itemsListCtrl.open = function (item) {
-            ItemsModel.setNewItem(item);
-            let modalInstance = $uibModal.open({
-                animation: itemsListCtrl.animationsEnabled,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: 'categories/items/edit-person-dialog.html',
-                controller: 'ModalInstanceEditCtrl',
-                controllerAs: 'modalInstanceEditCtrl'
-            });
-            modalInstance.result.then(function (newItemName) {
-                console.log("updated item");
-                ItemsModel.newItem.itemName = newItemName;
-                ItemsModel.updateItem(ItemsModel.newItem);
-            }).catch(function (reason) {
-                console.log(reason);
-            });
+            // editing part
+            itemsListCtrl.open = function (item) {
+                ItemsModel.setNewItem(item);
+                let modalInstance = $uibModal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: 'categories/items/edit-person-dialog.html',
+                    controller: 'ModalInstanceEditCtrl',
+                    controllerAs: 'modalInstanceEditCtrl'
+                });
+                modalInstance.result.then(function (newItemName) {
+                    console.log("updated item");
+                    ItemsModel.newItem.date = new Date();
+                    ItemsModel.newItem.itemName = newItemName;
+                    ItemsModel.updateItem(ItemsModel.newItem);
+                }).catch(function (reason) {
+                    console.log(reason);
+                });
+            }
 
-        }
+            // creating item
+            itemsListCtrl.open = function () {
+                console.log("create");
+                ItemsModel.newItem = {
+                    completed: true,
+                    itemName: "",
+                    date: new Date(),
+                    category: $stateParams.category
+                }
+                let modalInstance = $uibModal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: 'categories/items/create/model-create-tmpl.html',
+                    controller: 'ModalInstanceEditCtrl',
+                    controllerAs: 'modalInstanceEditCtrl'
 
-    }])
-    .controller('ModalInstanceEditCtrl',['$uibModalInstance','ItemsModel',
-        function ($uibModalInstance,ItemsModel) {
+                });
+                console.log(modalInstance);
+                modalInstance.result.then(function (newItemName) {
+                    ItemsModel.newItem.itemName = newItemName;
+                    ItemsModel.createItem(ItemsModel.newItem);
+                    console.log("saved item");
+                }).catch(function (reason) {
+                    console.log(reason);
+                });
+
+            }
+
+
+        }])
+    .controller('ModalInstanceEditCtrl', ['$uibModalInstance', 'ItemsModel',
+        function ($uibModalInstance, ItemsModel) {
             let modalInstanceEditCtrl = this;
             console.log("ModalInstanceEditCtrl");
-            modalInstanceEditCtrl.data =ItemsModel.newItem.itemName ;
+            modalInstanceEditCtrl.data = ItemsModel.newItem.itemName;
             modalInstanceEditCtrl.save = function () {
                 console.log(modalInstanceEditCtrl.data);
                 $uibModalInstance.close(modalInstanceEditCtrl.data);
@@ -104,51 +118,3 @@ function showDetails() {
         modal.find('.modal-body').text('Category: ' + recipient.category + "\n" + 'Date: ' + recipient.date)
     })
 }
-
-// app.directive('editPersonDialog', function () {
-//     return {
-//         restrict: 'E',
-//         transclude:true,
-//         scope: {
-//             model: '=',
-//             someCtrlFn: '&updateItemMethod'
-//         },
-//         controller:function ($scope) {
-//             $scope.customItem= angular.copy($scope.model);
-//         },
-//         link: function (scope, element, attributes) {
-//             console.log("ele", element);
-//             scope.$watch('model.visible', function (newValue) {
-//                 console.log('model.visible', newValue);
-//                 var modalElement = element.find('.modal');
-//                 console.log("modal element", modalElement);
-//                 modalElement.modal(newValue ? 'show' : 'hide');
-//             });
-//             element.on('shown.bs.modal', function () {
-//                 console.log("shown");
-//                 scope.$apply(function () {
-//                     scope.model.visible = true;
-//                 });
-//             });
-//             element.on('hidden.bs.modal', function () {
-//                 console.log("hidden");
-//                 scope.$apply(function () {
-//                     scope.model.visible = false;
-//                 });
-//             });
-//             // scope.someCtrlFn();
-//
-//             // $('#save').on('click', function () {
-//             //     console.log("saved", scope.model.item);
-//             //     // scope.someCtrlFn();
-//             //     // console.log(itemsListCtrl.editDialog);
-//             //     // itemsListCtrl.updateItem();
-//             //     //    console.log(ItemsModel.groceryItems);
-//             //     //    ItemsModel.updateItem(item);
-//             // })
-//
-//         },
-//         templateUrl: 'categories/items/edit-person-dialog.html',
-//     };
-// });
-//

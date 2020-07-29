@@ -25,16 +25,9 @@
     <ul class="list-group list-group-flush">
         <li ng-repeat="item in itemsListCtrl.groceryItems | filter:{ category : itemsListCtrl.getCurrentCategoryName()}"
             class="list-group-item text-center">
-            <!--                <button class="btn btn-secondary btn pull-left" ui-sref="eggly.categories.items.edit({id:item.id})">-->
-            <!--                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>-->
-            <button class="btn btn-secondary btn pull-left"
-                    ng-click="itemsListCtrl.open(item);">
-<!--                    ng-controller="EditItemCtrl as editItemCtrl" ng-click="editItemCtrl.open(item);">-->
-                <!--            ui-sref="eggly.categories.items.edit({id:item.id,itemName:item.itemName,category:item.category})">-->
-
-                <!--                                <ui-view></ui-view>-->
+            <button class="btn btn-secondary btn pull-left" ng-click="itemsListCtrl.open(item);">
+                <!--             ng-controller="EditItemCtrl as editItemCtrl" ng-click="editItemCtrl.open(item);">-->
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <!--            <edit-person-dialog model="item" update-item-method="itemsListCtrl.updateItem(message)"></edit-person-dialog>-->
             <button type="button" class="close pull-right" ng-click="itemsListCtrl.deleteItem(item)"
                     aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -45,12 +38,12 @@
             </span>
         </li>
     </ul>
-
     <hr>
 
     <!--            creating new item-->
-    <div ng-if="itemsListCtrl.getCurrentCategory()" ng-controller="CreateItemCtrl as createItemCtrl">
-        <button type="button" class="btn btn-link" ng-click="createItemCtrl.open()">
+<!--    <div ng-if="itemsListCtrl.getCurrentCategory()" ng-controller="CreateItemCtrl as createItemCtrl">-->
+    <div ng-if="itemsListCtrl.getCurrentCategory()">
+    <button type="button" class="btn btn-link" ng-click="itemsListCtrl.open()">
             <i class="fa fa-plus" aria-hidden="true"></i>
             <span>ADD ITEM</span>
         </button>
