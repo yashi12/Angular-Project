@@ -28,7 +28,8 @@ app.config(function ($stateProvider) {
             }
         });
 })
-    .controller('ItemsListCtrl', ['$stateParams', 'ItemsModel', 'CategoriesModel', '$scope', function ($stateParams, ItemsModel, CategoriesModel, $scope) {
+    .controller('ItemsListCtrl', ['$stateParams', 'ItemsModel', 'CategoriesModel', '$uibModal',
+        function ($stateParams, ItemsModel, CategoriesModel, $uibModal) {
         let itemsListCtrl = this;
         // console.log(" start edit dialog");
         // itemsListCtrl.editDialog = new EditPersonDialogModel();
@@ -55,8 +56,42 @@ app.config(function ($stateProvider) {
             // returnToItems();
         }
 
+        // editing part
+        itemsListCtrl.open = function (item) {
+            ItemsModel.setNewItem(item);
+            let modalInstance = $uibModal.open({
+                animation: itemsListCtrl.animationsEnabled,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'categories/items/edit-person-dialog.html',
+                controller: 'ModalInstanceEditCtrl',
+                controllerAs: 'modalInstanceEditCtrl'
+            });
+            modalInstance.result.then(function (newItemName) {
+                console.log("updated item");
+                ItemsModel.newItem.itemName = newItemName;
+                ItemsModel.updateItem(ItemsModel.newItem);
+            }).catch(function (reason) {
+                console.log(reason);
+            });
+
+        }
 
     }])
+    .controller('ModalInstanceEditCtrl',['$uibModalInstance','ItemsModel',
+        function ($uibModalInstance,ItemsModel) {
+            let modalInstanceEditCtrl = this;
+            console.log("ModalInstanceEditCtrl");
+            modalInstanceEditCtrl.data =ItemsModel.newItem.itemName ;
+            modalInstanceEditCtrl.save = function () {
+                console.log(modalInstanceEditCtrl.data);
+                $uibModalInstance.close(modalInstanceEditCtrl.data);
+            }
+
+            modalInstanceEditCtrl.cancel = function () {
+                $uibModalInstance.dismiss('dismissed');
+            }
+        }])
 
 function showDetails() {
     console.log("func")

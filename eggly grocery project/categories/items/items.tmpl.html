@@ -28,7 +28,8 @@
             <!--                <button class="btn btn-secondary btn pull-left" ui-sref="eggly.categories.items.edit({id:item.id})">-->
             <!--                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>-->
             <button class="btn btn-secondary btn pull-left"
-                    ng-controller="EditItemCtrl as editItemCtrl" ng-click="editItemCtrl.open(item);">
+                    ng-click="itemsListCtrl.open(item);">
+<!--                    ng-controller="EditItemCtrl as editItemCtrl" ng-click="editItemCtrl.open(item);">-->
                 <!--            ui-sref="eggly.categories.items.edit({id:item.id,itemName:item.itemName,category:item.category})">-->
 
                 <!--                                <ui-view></ui-view>-->
