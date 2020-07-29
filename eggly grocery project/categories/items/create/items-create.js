@@ -49,10 +49,10 @@ angular.module('categories.items.create').controller('ModalInstanceCreateCtrl', 
     var modalInstanceCreateCtrl = this;
     modalInstanceCreateCtrl.data = undefined;
     console.log("modal instace pc");
-    modalInstanceCreateCtrl.ok = function () {
-        console.log("ok");
-        $uibModalInstance.close();
-    };
+    // modalInstanceCreateCtrl.ok = function () {
+    //     console.log("ok");
+    //     $uibModalInstance.close();
+    // };
     modalInstanceCreateCtrl.save = function () {
         console.log(modalInstanceCreateCtrl.data);
         // $rootScope.$emit("parent", modalInstanceCreateCtrl.data);
