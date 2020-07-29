@@ -6,6 +6,11 @@ angular.module('eggly.models.items', [])
             },
             groceryItems;
 
+
+        model.setNewItem = function (item) {
+            model.newItem = item;
+        }
+
         function extract(result) {
             return result.data;
         }

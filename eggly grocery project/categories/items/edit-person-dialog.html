@@ -1,6 +1,6 @@
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+<!--<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-lg">-->
+<!--        <div class="modal-content">-->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -10,16 +10,16 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Item Name:</label>
-                    <input ng-model="customItem.itemName" class="form-control">
+                    <input ng-model="modalInstanceEditCtrl.data" class="form-control">
                 </div>
             </div>
 
             <div class="modal-footer">
 
-                <button id="save" type="submit" class="btn btn-primary" ng-click="someCtrlFn({message:'hi'});">Save changes</button>
+                <button id="save" type="submit" class="btn btn-primary" ng-click="modalInstanceEditCtrl.save();">Save changes</button>
                 <div ng-transclude></div>
-                <button type="button" class="btn btn-default" ng-click="cancel();" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" ng-click="modalInstanceEditCtrl.cancel();" data-dismiss="modal">Close</button>
             </div>
-        </div>
-    </div>
-</div>
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->

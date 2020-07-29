@@ -30,9 +30,9 @@ app.config(function ($stateProvider) {
 })
     .controller('ItemsListCtrl', ['$stateParams', 'ItemsModel', 'CategoriesModel', '$scope', function ($stateParams, ItemsModel, CategoriesModel, $scope) {
         let itemsListCtrl = this;
-        console.log(" start edit dialog");
-        itemsListCtrl.editDialog = new EditPersonDialogModel();
-        console.log("edit dialog");
+        // console.log(" start edit dialog");
+        // itemsListCtrl.editDialog = new EditPersonDialogModel();
+        // console.log("edit dialog");
 
         CategoriesModel.SetCurrentCategory($stateParams.category);
 
@@ -70,50 +70,50 @@ function showDetails() {
     })
 }
 
-app.directive('editPersonDialog', function () {
-    return {
-        restrict: 'E',
-        transclude:true,
-        scope: {
-            model: '=',
-            someCtrlFn: '&updateItemMethod'
-        },
-        controller:function ($scope) {
-            $scope.customItem= angular.copy($scope.model);
-        },
-        link: function (scope, element, attributes) {
-            console.log("ele", element);
-            scope.$watch('model.visible', function (newValue) {
-                console.log('model.visible', newValue);
-                var modalElement = element.find('.modal');
-                console.log("modal element", modalElement);
-                modalElement.modal(newValue ? 'show' : 'hide');
-            });
-            element.on('shown.bs.modal', function () {
-                console.log("shown");
-                scope.$apply(function () {
-                    scope.model.visible = true;
-                });
-            });
-            element.on('hidden.bs.modal', function () {
-                console.log("hidden");
-                scope.$apply(function () {
-                    scope.model.visible = false;
-                });
-            });
-            // scope.someCtrlFn();
-
-            // $('#save').on('click', function () {
-            //     console.log("saved", scope.model.item);
-            //     // scope.someCtrlFn();
-            //     // console.log(itemsListCtrl.editDialog);
-            //     // itemsListCtrl.updateItem();
-            //     //    console.log(ItemsModel.groceryItems);
-            //     //    ItemsModel.updateItem(item);
-            // })
-
-        },
-        templateUrl: 'categories/items/edit-person-dialog.html',
-    };
-});
-
+// app.directive('editPersonDialog', function () {
+//     return {
+//         restrict: 'E',
+//         transclude:true,
+//         scope: {
+//             model: '=',
+//             someCtrlFn: '&updateItemMethod'
+//         },
+//         controller:function ($scope) {
+//             $scope.customItem= angular.copy($scope.model);
+//         },
+//         link: function (scope, element, attributes) {
+//             console.log("ele", element);
+//             scope.$watch('model.visible', function (newValue) {
+//                 console.log('model.visible', newValue);
+//                 var modalElement = element.find('.modal');
+//                 console.log("modal element", modalElement);
+//                 modalElement.modal(newValue ? 'show' : 'hide');
+//             });
+//             element.on('shown.bs.modal', function () {
+//                 console.log("shown");
+//                 scope.$apply(function () {
+//                     scope.model.visible = true;
+//                 });
+//             });
+//             element.on('hidden.bs.modal', function () {
+//                 console.log("hidden");
+//                 scope.$apply(function () {
+//                     scope.model.visible = false;
+//                 });
+//             });
+//             // scope.someCtrlFn();
+//
+//             // $('#save').on('click', function () {
+//             //     console.log("saved", scope.model.item);
+//             //     // scope.someCtrlFn();
+//             //     // console.log(itemsListCtrl.editDialog);
+//             //     // itemsListCtrl.updateItem();
+//             //     //    console.log(ItemsModel.groceryItems);
+//             //     //    ItemsModel.updateItem(item);
+//             // })
+//
+//         },
+//         templateUrl: 'categories/items/edit-person-dialog.html',
+//     };
+// });
+//

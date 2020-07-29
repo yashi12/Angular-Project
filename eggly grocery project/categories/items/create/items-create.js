@@ -33,8 +33,8 @@ angular.module('categories.items.create', ['ui.bootstrap'])
 
 
     }]);
-angular.module('categories.items.create').controller('ModalInstanceCreateCtrl', ['$uibModalInstance', '$rootScope',
-    function ($uibModalInstance, $rootScope) {
+angular.module('categories.items.create').controller('ModalInstanceCreateCtrl',
+    ['$uibModalInstance', function ($uibModalInstance) {
     var modalInstanceCreateCtrl = this;
     modalInstanceCreateCtrl.data = undefined;
     modalInstanceCreateCtrl.save = function () {
