@@ -75,3 +75,14 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
     }
 
 }
+// function showDetails() {
+//     console.log("func")
+//     $('#exampleModalCenter').on('show.bs.modal', function (event) {
+//         console.log("button");
+//         var button = $(event.relatedTarget) // Button that triggered the modal
+//         var recipient = button.data('what');
+//         var modal = $(this)
+//         modal.find('.modal-title').text('Item chosen: ' + recipient.itemName)
+//         modal.find('.modal-body').text('Category: ' + recipient.category + "\n" + 'Date: ' + recipient.date)
+//     })
+// }
