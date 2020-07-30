@@ -2,7 +2,7 @@ angular
     .module('categories')
     .controller('CategoriesController',CategoriesController);
 
-CategoriesController.$inject = ['CategoriesModel'];
+CategoriesController.$inject = ['categoriesService'];
 
 function CategoriesController(CategoriesModel) {
     let vm = this;

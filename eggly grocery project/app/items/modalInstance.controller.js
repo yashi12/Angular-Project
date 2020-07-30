@@ -2,7 +2,7 @@ angular
     .module('categories.items')
     .controller('ModalInstanceController', ModalInstanceController);
 
-ModalInstanceController.$inject = ['$uibModalInstance', 'ItemsModel'];
+ModalInstanceController.$inject = ['$uibModalInstance', 'itemsService'];
 
 function ModalInstanceController($uibModalInstance, ItemsModel) {
     let vm = this;

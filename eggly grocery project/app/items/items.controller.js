@@ -2,7 +2,7 @@ angular
     .module('categories.items')
     .controller('ItemsController', ItemsController);
 
-ItemsController.$inject = ['$stateParams', 'ItemsModel', 'CategoriesModel', '$uibModal'];
+ItemsController.$inject = ['$stateParams', 'itemsService', 'categoriesService', '$uibModal'];
 
 function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
     let vm = this;
