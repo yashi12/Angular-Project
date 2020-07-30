@@ -7,7 +7,7 @@ angular.module('categories.items.create', ['ui.bootstrap'])
             var modalInstance = $uibModal.open({
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                templateUrl: 'categories/items/create/model-create-tmpl.html',
+                templateUrl: 'app/items/createModal.html',
                 controller: 'ModalInstanceCreateCtrl',
                 controllerAs: 'modalInstanceCreateCtrl'
 

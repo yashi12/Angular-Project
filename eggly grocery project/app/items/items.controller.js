@@ -58,7 +58,7 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
         let modalInstance = $uibModal.open({
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: 'categories/items/create/model-create-tmpl.html',
+            templateUrl: 'app/items/createModal.html',
             controller: 'ModalInstanceController',
             controllerAs: 'vm'
 
