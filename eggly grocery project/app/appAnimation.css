@@ -1,4 +1,4 @@
-[ui-view].ng-enter , [ui-view].ng-leave{
+[ui-view].ng-enter, [ui-view].ng-leave {
     position: absolute;
     left: 0;
     right: 0;

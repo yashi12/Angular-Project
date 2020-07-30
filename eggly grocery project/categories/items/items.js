@@ -1,49 +1,69 @@
-var categories_items = angular.module('categories.items', [
+angular.module('categories.items', [
     'eggly.models.categories',
     'eggly.models.items',
-    'categories.items.create',
-    'categories.items.edit'
+    // 'categories.items.create',
+    // 'categories.items.edit'
 
-]);
-categories_items.config(function ($stateProvider) {
-    $stateProvider
-        .state('eggly.categories.items', {
-            url: 'categories/:category',
-            views: {
-                'items@': {
-                    templateUrl: 'categories/items/items.tmpl.html',
-                    controller: 'ItemsListCtrl as itemsListCtrl'
+])
+    .config(function ($stateProvider) {
+        $stateProvider
+            .state('eggly.categories.items', {
+                url: 'categories/:category',
+                views: {
+                    'items@': {
+                        templateUrl: 'categories/items/items.tmpl.html',
+                        controller: 'ItemsController as vm'
+                    }
                 }
-            }
-        });
-})
-    .controller('ItemsListCtrl', ['$stateParams', 'ItemsModel', 'CategoriesModel', '$uibModal',
+            });
+    })
+    .controller('ItemsController', ['$stateParams', 'ItemsModel', 'CategoriesModel', '$uibModal',
         function ($stateParams, ItemsModel, CategoriesModel, $uibModal) {
-            let itemsListCtrl = this;
+
+            let vm = this;
+
+            vm.currentCategoryName = $stateParams.category;
+            vm.getCurrentCategory = CategoriesModel.getCurrentCategory;
+            vm.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
+            vm.deleteItem = ItemsModel.deleteItem;
+            vm.openEdit = openEdit;
+            vm.openCreate = openCreate;
+            console.log("good");
 
             CategoriesModel.SetCurrentCategory($stateParams.category);
 
-            itemsListCtrl.currentCategoryName = $stateParams.category;
-            ItemsModel.getItems()
-                .then(function (items) {
-                    itemsListCtrl.groceryItems = items;
-                });
-            itemsListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
-            itemsListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
-            itemsListCtrl.deleteItem = ItemsModel.deleteItem;
+            activate();
 
-            itemsListCtrl.showDetails = function () {
+            function activate(){
+                return ItemsModel.getItems()
+                    .then(function (items) {
+                        vm.groceryItems = items;
+                    }).catch(function (reason) {
+                        alert(reason);
+                        console.log(reason);
+                    });
             }
-            itemsListCtrl.updateItem = function (message) {
-                console.log("update");
-                alert("update");
-                // itemsListCtrl.changedItem = angular.copy(editPersonDialog.item);
-                // ItemsModel.updateItem(itemsListCtrl.changedItem);
-                // returnToItems();
-            }
+            // ItemsModel.getItems()
+            //     .then(function (items) {
+            //         vm.groceryItems = items;
+            //     }).catch(function (reason) {
+            //         alert(reason);
+            //         console.log(reason);
+            //     });
+
+
+            // vm.showDetails = function () {
+            // }
+            // vm.updateItem = function (message) {
+            //     console.log("update");
+            //     alert("update");
+            //     // vm.changedItem = angular.copy(editPersonDialog.item);
+            //     // ItemsModel.updateItem(vm.changedItem);
+            //     // returnToItems();
+            // }
 
             // editing part
-            itemsListCtrl.open = function (item) {
+            function openEdit(item) {
                 ItemsModel.setNewItem(item);
                 let modalInstance = $uibModal.open({
                     ariaLabelledBy: 'modal-title',
@@ -63,7 +83,7 @@ categories_items.config(function ($stateProvider) {
             }
 
             // creating item
-            itemsListCtrl.open = function () {
+            function openCreate() {
                 console.log("create");
                 ItemsModel.newItem = {
                     completed: true,
@@ -107,14 +127,14 @@ categories_items.config(function ($stateProvider) {
             }
         }])
 
-function showDetails() {
-    console.log("func")
-    $('#exampleModalCenter').on('show.bs.modal', function (event) {
-        console.log("button");
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('what');
-        var modal = $(this)
-        modal.find('.modal-title').text('Item chosen: ' + recipient.itemName)
-        modal.find('.modal-body').text('Category: ' + recipient.category + "\n" + 'Date: ' + recipient.date)
-    })
-}
+// function showDetails() {
+//     console.log("func")
+//     $('#exampleModalCenter').on('show.bs.modal', function (event) {
+//         console.log("button");
+//         var button = $(event.relatedTarget) // Button that triggered the modal
+//         var recipient = button.data('what');
+//         var modal = $(this)
+//         modal.find('.modal-title').text('Item chosen: ' + recipient.itemName)
+//         modal.find('.modal-body').text('Category: ' + recipient.category + "\n" + 'Date: ' + recipient.date)
+//     })
+// }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="groceryList">
+<html lang="en" ng-app="app">
 
 <head>
 
@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!--css files-->
-    <link rel="stylesheet" href="css/mainPage.css">
-    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="app/appMainPage.css">
+    <link rel="stylesheet" href="app/appAnimation.css">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -60,13 +60,21 @@
 <script src="//morgul.github.io/ui-bootstrap4/ui-bootstrap-tpls-3.0.6.js"></script>
 <script src="lib/underscore-min.js"></script>
 
-<script src="categories/items/create/items-create.js"></script>
-<script src="categories/items/edit/items-edit.js"></script>
+<!--<script src="categories/items/create/items-create.js"></script>-->
+<!--<script src="categories/items/edit/items-edit.js"></script>-->
 <script src="categories/items/items.js"></script>
-<script src="categories/categories.js"></script>
+<!--<script src="categories/categories.js"></script>-->
+<script src="app/category/categories.module.js"></script>
+<script src="app/category/categories.config.js"></script>
+<script src="app/category/categories.controller.js"></script>
+
+
 <script src="common/models/categories-model.js"></script>
 <script src="common/models/items-model.js"></script>
-<script src="app.js"></script>
+<!--<script src="app.js"></script>-->
+<script src="app/app.module.js"></script>
+<script src="app/app.config.js"></script>
+
 
 </body>
 

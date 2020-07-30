@@ -1,25 +1,25 @@
-const categoriesApp = angular.module('categories',
-    ['ui.router','categories.items','eggly.models.categories']);
-categoriesApp.config(function ($stateProvider) {
-    $stateProvider
-        .state('eggly.categories', {
-            url: '/',
-            views: {
-                'categories@': {
-                    controller: 'CategoriesListCtrl as categoriesListCtrl',
-                    templateUrl: 'categories/categories.tmpl.html'
-                },
-                'items@': {
-                    controller: 'ItemsListCtrl as itemsListCtrl',
-                    templateUrl: 'categories/items/items.tmpl.html'
+angular.module('categories',
+    ['ui.router', 'categories.items', 'eggly.models.categories'])
+    .config(function ($stateProvider) {
+        $stateProvider
+            .state('eggly.categories', {
+                url: '/',
+                views: {
+                    'categories@': {
+                        controller: 'CategoriesController as vm',
+                        templateUrl: 'app/category/categories.tmpl.html'
+                    },
+                    'items@': {
+                        controller: 'ItemsListCtrl as itemsListCtrl',
+                        templateUrl: 'categories/items/items.tmpl.html'
+                    }
                 }
-            }
-        })
-})
-categoriesApp.controller('CategoriesListCtrl', function CategoriesCtrl(CategoriesModel) {
-    let categoriesListCtrl =this;
+            })
+    })
+    .controller('CategoriesController', function CategoriesCtrl(CategoriesModel) {
+    let vm = this;
     CategoriesModel.getCategories()
         .then(function (result) {
-            categoriesListCtrl.categorieItems = result;
+            vm.categorieItems = result;
         })
 });
