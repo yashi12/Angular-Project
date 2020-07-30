@@ -69,8 +69,8 @@ angular.module('categories.items', [
                     ariaLabelledBy: 'modal-title',
                     ariaDescribedBy: 'modal-body',
                     templateUrl: 'categories/items/edit-person-dialog.html',
-                    controller: 'ModalInstanceEditCtrl',
-                    controllerAs: 'modalInstanceEditCtrl'
+                    controller: 'ModalInstanceController',
+                    controllerAs: 'vm'
                 });
                 modalInstance.result.then(function (newItemName) {
                     console.log("updated item");
@@ -95,8 +95,8 @@ angular.module('categories.items', [
                     ariaLabelledBy: 'modal-title',
                     ariaDescribedBy: 'modal-body',
                     templateUrl: 'categories/items/create/model-create-tmpl.html',
-                    controller: 'ModalInstanceEditCtrl',
-                    controllerAs: 'modalInstanceEditCtrl'
+                    controller: 'ModalInstanceController',
+                    controllerAs: 'vm'
 
                 });
                 console.log(modalInstance);
@@ -112,17 +112,17 @@ angular.module('categories.items', [
 
 
         }])
-    .controller('ModalInstanceEditCtrl', ['$uibModalInstance', 'ItemsModel',
+    .controller('ModalInstanceController', ['$uibModalInstance', 'ItemsModel',
         function ($uibModalInstance, ItemsModel) {
-            let modalInstanceEditCtrl = this;
+            let vm = this;
             console.log("ModalInstanceEditCtrl");
-            modalInstanceEditCtrl.data = ItemsModel.newItem.itemName;
-            modalInstanceEditCtrl.save = function () {
-                console.log(modalInstanceEditCtrl.data);
-                $uibModalInstance.close(modalInstanceEditCtrl.data);
+            vm.data = ItemsModel.newItem.itemName;
+            vm.save = function () {
+                console.log(vm.data);
+                $uibModalInstance.close(vm.data);
             }
 
-            modalInstanceEditCtrl.cancel = function () {
+            vm.cancel = function () {
                 $uibModalInstance.dismiss('dismissed');
             }
         }])

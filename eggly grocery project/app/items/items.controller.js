@@ -18,7 +18,7 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
 
     activate();
 
-    function activate(){
+    function activate() {
         return ItemsModel.getItems()
             .then(function (items) {
                 vm.groceryItems = items;
@@ -34,8 +34,8 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
             templateUrl: 'categories/items/edit-person-dialog.html',
-            controller: 'ModalInstanceEditCtrl',
-            controllerAs: 'modalInstanceEditCtrl'
+            controller: 'ModalInstanceController',
+            controllerAs: 'vm'
         });
         modalInstance.result.then(function (newItemName) {
             console.log("updated item");
@@ -59,8 +59,8 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
             templateUrl: 'categories/items/create/model-create-tmpl.html',
-            controller: 'ModalInstanceEditCtrl',
-            controllerAs: 'modalInstanceEditCtrl'
+            controller: 'ModalInstanceController',
+            controllerAs: 'vm'
 
         });
         console.log(modalInstance);
