@@ -75,6 +75,7 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
     }
 
 }
+
 // function showDetails() {
 //     console.log("func")
 //     $('#exampleModalCenter').on('show.bs.modal', function (event) {

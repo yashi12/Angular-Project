@@ -1,8 +1,3 @@
 angular.module('categories.items', [
-    'categories',
-    // 'eggly.models.items'
+    'categories'
 ]);
-// angular.module('categories.items', [
-//     'eggly.models.categories',
-//     'eggly.models.items'
-// ]);

@@ -58,7 +58,6 @@ function itemsService($http, $q) {
             });
         }
         return deferred.promise;
-
     }
 
     function updateItem(item) {
@@ -66,7 +65,7 @@ function itemsService($http, $q) {
             return curritem.id == item.id;
         });
         groceryItems[index] = item;
-    };
+    }
 
     function createItem(item) {
         item.id = groceryItems.length + 1;
@@ -79,6 +78,5 @@ function itemsService($http, $q) {
             return curritem.id == item.id;
         });
         groceryItems.splice(index, 1);
-
     }
 }
