@@ -9,7 +9,7 @@ angular.module('categories.items.edit', ['ui.bootstrap'])
                   category: null,
                   itemName: null
                 },
-                // templateUrl: 'categories/items/edit-person-dialog.html',
+                // templateUrl: 'app/items/editModal.html',
                 controller: 'EditItemCtrl as editItemCtrl'
             })
     })
@@ -30,7 +30,7 @@ angular.module('categories.items.edit', ['ui.bootstrap'])
             let modalInstance = $uibModal.open({
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                templateUrl: 'categories/items/edit-person-dialog.html',
+                templateUrl: 'app/items/editModal.html',
                 controller: 'ModalInstanceEditCtrl',
                 controllerAs: 'modalInstanceEditCtrl'
             });

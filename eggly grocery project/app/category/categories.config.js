@@ -15,7 +15,7 @@ function categoriesConfig($stateProvider) {
                 },
                 'items@': {
                     controller: 'ItemsController as vm',
-                    templateUrl: 'categories/items/items.tmpl.html'
+                    templateUrl: 'app/items/items.tmpl.html'
                 }
             }
         })

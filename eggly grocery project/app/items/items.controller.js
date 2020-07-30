@@ -33,7 +33,7 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
         let modalInstance = $uibModal.open({
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: 'categories/items/edit-person-dialog.html',
+            templateUrl: 'app/items/editModal.html',
             controller: 'ModalInstanceController',
             controllerAs: 'vm'
         });
