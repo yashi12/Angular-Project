@@ -1,9 +1,9 @@
 // import {module_app} from './module.js';
 // import {configApp} from "./config.js";
 
-import {module_app} from "./module.js";
+import appModule from "./module.js";
 
-export let con =  module_app
+export let con =  appModule
     .controller('FormController', function () {
         const vm=this;
     });

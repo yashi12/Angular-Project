@@ -1,5 +1,8 @@
 import _ from 'lodash';
 import printMe from './print.js';
+// import {myIcon} from "./print.js";
+
+import Icon from '../images/images.jpg';
 
 function component() {
     const element = document.createElement('div');
@@ -8,7 +11,9 @@ function component() {
     btn.innerHTML = 'Click me and check the console!';
     btn.onclick = printMe;
     element.appendChild(btn);
-
+    const myIcon = new Image();
+    myIcon.src = Icon;
+    element.appendChild(myIcon);
     return element;
 }
 

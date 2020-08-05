@@ -1,8 +1,9 @@
 // import {module_app} from './module.js';
 
 import {con} from "./controller.js";
+import {configApp} from "./config.js";
 
-con
+configApp
     .directive('enrollNum', enrollNum);
 
 enrollNum.$inject = ['$q', '$timeout'];
