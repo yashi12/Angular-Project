@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import printMe from './print.js';
 // import {myIcon} from "./print.js";
-
 import Icon from '../images/images.jpg';
 
 function component() {

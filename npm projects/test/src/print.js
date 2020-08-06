@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import './hello.css';
 import Icon from '../images/images.jpg';
-export default function printMe() {
+ function printMe() {
     console.log('I get called from print.js!');
 }
 console.log(
@@ -10,3 +10,5 @@ console.log(
 
 export const myIcon = new Image();
 myIcon.src = Icon;
+
+export default printMe();

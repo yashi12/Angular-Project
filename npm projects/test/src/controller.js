@@ -3,7 +3,10 @@
 
 import appModule from "./module.js";
 
-export let con =  appModule
-    .controller('FormController', function () {
-        const vm=this;
-    });
+// export let con =  appModule
+//     .controller('FormController',ctrlFunc );
+
+function ctrlFunc() {
+    const vm=this;
+}
+export default ctrlFunc;

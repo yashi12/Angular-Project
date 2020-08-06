@@ -2,9 +2,9 @@
 
 import {con} from "./controller.js";
 import {configApp} from "./config.js";
-
-configApp
-    .directive('enrollNum', enrollNum);
+//
+// configApp
+//     .directive('enrollNum', enrollNum);
 
 enrollNum.$inject = ['$q', '$timeout'];
 
@@ -39,3 +39,5 @@ function enrollNum($q, $timeout) {
 
     }
 }
+
+export default enrollNum;

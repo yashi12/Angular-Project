@@ -1,9 +1,9 @@
-import appModule from './module.js';
-import '../dist/template.html';
-import {con} from "./controller.js";
-
-export let configApp = appModule
-.config(funcConfig);
+// import appModule from './module.js';
+// import '../dist/template.html';
+// import {con} from "./controller.js";
+//
+// export let configApp = appModule
+// .config(funcConfig);
 
 funcConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
@@ -17,3 +17,4 @@ function funcConfig($stateProvider,$urlRouterProvider) {
         });
     $urlRouterProvider.otherwise('');
 }
+export default funcConfig;

@@ -6,14 +6,18 @@ module.exports = {
     mode: 'development',
     entry: {
         app: './src/index.js',
-        enroll: './src/enroll.directive.js',
-        print: './src/print.js',
-        contr: './src/controller.js'
+        modul:'./src/module.js'
     },
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title:"Test project",
+            template: "./dist/index1.html"
+        })
+    ],
     output: {
         // filename: "main.js",
         filename: '[name].bundle.js',
@@ -34,7 +38,7 @@ module.exports = {
             use: ['source-map-loader'],
         },
         {
-            test: /\.(png|svg|jpg|gif)$/i,
+            test: /\.(png|svg|jpe?g|gif)$/i,
             use:[
                 'file-loader',
             ],
