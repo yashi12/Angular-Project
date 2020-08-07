@@ -11,11 +11,11 @@ function categoriesConfig($stateProvider) {
             views: {
                 'categories@': {
                     controller: 'CategoriesController as vm',
-                    templateUrl: 'app/category/categories.tmpl.html'
+                    templateUrl: '../src/category/categories.tmpl.html'
                 },
                 'items@': {
                     controller: 'ItemsController as vm',
-                    templateUrl: 'app/items/items.tmpl.html'
+                    templateUrl: '../src/items/items.tmpl.html'
                 }
             }
         })

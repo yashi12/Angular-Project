@@ -33,7 +33,7 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
         let modalInstance = $uibModal.open({
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: 'app/items/editModal.html',
+            templateUrl: '../src/items/editModal.html',
             controller: 'ModalInstanceController',
             controllerAs: 'vm'
         });
@@ -58,7 +58,7 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
         let modalInstance = $uibModal.open({
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: 'app/items/createModal.html',
+            templateUrl: '../src/items/createModal.html',
             controller: 'ModalInstanceController',
             controllerAs: 'vm'
 

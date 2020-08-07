@@ -7,7 +7,7 @@ categoriesService.$inject = ['$http', '$q'];
 function categoriesService($http, $q) {
     let categoriesService = this,
         URLS = {
-            FETCH: 'data/categories.json'
+            FETCH: '../data/categories.json'
         },
         categorieItems,
         currentCategory;

@@ -6,7 +6,7 @@ itemsService.$inject = ['$http','$q'];
 function itemsService($http, $q) {
     let itemsService = this,
         URLS = {
-            FETCH: 'data/items.json'
+            FETCH: '../data/items.json'
         },
         groceryItems;
 

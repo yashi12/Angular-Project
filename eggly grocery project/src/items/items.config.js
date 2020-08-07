@@ -10,7 +10,7 @@ function itemsConfig($stateProvider) {
             url: 'categories/:category',
             views: {
                 'items@': {
-                    templateUrl: 'app/items/items.tmpl.html',
+                    templateUrl: '../src/items/items.tmpl.html',
                     controller: 'ItemsController as vm'
                 }
             }
