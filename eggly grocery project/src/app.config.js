@@ -1,6 +1,6 @@
-angular
-    .module('app')
-    .config(appConfig);
+// angular
+//     .module('app')
+//     .config(appConfig);
 
 appConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
@@ -15,3 +15,6 @@ function appConfig($stateProvider, $urlRouterProvider) {
     console.log("end");
     $urlRouterProvider.otherwise('');
 }
+export default appConfig;
+
+console.log("appConfig");

@@ -1,47 +1,51 @@
-angular
-    .module('categories.items')
-    .controller('ItemsController', ItemsController);
+// angular
+//     .module('categories.items')
+//     .controller('ItemsController', ItemsController);
+
+import ModalInstanceController from './modalInstance.controller.js';
+
 
 ItemsController.$inject = ['$stateParams', 'itemsService', 'categoriesService', '$uibModal'];
 
-function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
+function ItemsController($stateParams, itemsService, categoriesService, $uibModal) {
     let vm = this;
 
     vm.currentCategoryName = $stateParams.category;
-    vm.getCurrentCategory = CategoriesModel.getCurrentCategory;
-    vm.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
-    vm.deleteItem = ItemsModel.deleteItem;
+    vm.getCurrentCategory = categoriesService.getCurrentCategory;
+    vm.getCurrentCategoryName = categoriesService.getCurrentCategoryName;
+    vm.deleteItem = itemsService.deleteItem;
     vm.openEdit = openEdit;
     vm.openCreate = openCreate;
 
-    CategoriesModel.SetCurrentCategory($stateParams.category);
+    categoriesService.SetCurrentCategory($stateParams.category);
 
     activate();
 
     function activate() {
-        return ItemsModel.getItems()
-            .then(function (items) {
-                vm.groceryItems = items;
-            }).catch(function (reason) {
-                alert(reason);
-                console.log(reason);
-            });
+        // return itemsService.getItems()
+        //     .then(function (items) {
+        //         vm.groceryItems = items;
+        //     }).catch(function (reason) {
+        //         alert(reason);
+        //         console.log(reason);
+        //     });
+        vm.groceryItems = itemsService.getItems();
     }
 
     function openEdit(item) {
-        ItemsModel.setNewItem(item);
+        itemsService.setNewItem(item);
         let modalInstance = $uibModal.open({
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: '../src/items/editModal.html',
+            template: require('./editModal.html'),
             controller: 'ModalInstanceController',
             controllerAs: 'vm'
         });
         modalInstance.result.then(function (newItemName) {
             console.log("updated item");
-            ItemsModel.newItem.date = new Date();
-            ItemsModel.newItem.itemName = newItemName;
-            ItemsModel.updateItem(ItemsModel.newItem);
+            itemsService.newItem.date = new Date();
+            itemsService.newItem.itemName = newItemName;
+            itemsService.updateItem(itemsService.newItem);
         }).catch(function (reason) {
             console.log(reason);
         });
@@ -49,7 +53,7 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
 
     function openCreate() {
         console.log("create");
-        ItemsModel.newItem = {
+        itemsService.newItem = {
             completed: true,
             itemName: "",
             date: new Date(),
@@ -58,15 +62,15 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
         let modalInstance = $uibModal.open({
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: '../src/items/createModal.html',
+            template:require( './createModal.html'),
             controller: 'ModalInstanceController',
             controllerAs: 'vm'
 
         });
         console.log(modalInstance);
         modalInstance.result.then(function (newItemName) {
-            ItemsModel.newItem.itemName = newItemName;
-            ItemsModel.createItem(ItemsModel.newItem);
+            itemsService.newItem.itemName = newItemName;
+            itemsService.createItem(itemsService.newItem);
             console.log("saved item");
         }).catch(function (reason) {
             console.log(reason);
@@ -75,6 +79,9 @@ function ItemsController($stateParams, ItemsModel, CategoriesModel, $uibModal) {
     }
 
 }
+
+export default ItemsController;
+
 
 // function showDetails() {
 //     console.log("func")

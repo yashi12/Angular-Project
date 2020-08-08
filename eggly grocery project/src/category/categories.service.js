@@ -1,13 +1,15 @@
-angular
-    .module('categories')
-    .service('categoriesService', categoriesService);
+// angular
+//     .module('categories')
+//     .service('categoriesService', categoriesService);
+
 
 categoriesService.$inject = ['$http', '$q'];
 
 function categoriesService($http, $q) {
+    let json = require('../../data/categories.json');
     let categoriesService = this,
         URLS = {
-            FETCH: '../data/categories.json'
+            FETCH: '../../data/categories.json'
         },
         categorieItems,
         currentCategory;
@@ -28,7 +30,9 @@ function categoriesService($http, $q) {
     }
 
     function getCategories() {
-        return (categorieItems) ? $q.when(categorieItems) : $http.get(URLS.FETCH).then(cacheCategories);
+        // return (categorieItems) ? $q.when(categorieItems) : $http.get(URLS.FETCH).then(cacheCategories);
+        categorieItems = json;
+        return categorieItems;
     }
 
     function getCategoryByName(categoryName) {
@@ -69,3 +73,5 @@ function categoriesService($http, $q) {
         return currentCategory ? currentCategory.name : '';
     }
 }
+
+export default categoriesService;

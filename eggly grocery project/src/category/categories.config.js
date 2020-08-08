@@ -1,6 +1,7 @@
-angular
-    .module('categories')
-    .config(categoriesConfig);
+// angular
+//     .module('categories')
+//     .config(categoriesConfig);
+// import './categories.tmpl.html';
 
 categoriesConfig.$inject = ['$stateProvider'];
 
@@ -11,12 +12,14 @@ function categoriesConfig($stateProvider) {
             views: {
                 'categories@': {
                     controller: 'CategoriesController as vm',
-                    templateUrl: '../src/category/categories.tmpl.html'
+                    template: require('./categories.tmpl.html')
                 },
-                'items@': {
-                    controller: 'ItemsController as vm',
-                    templateUrl: '../src/items/items.tmpl.html'
-                }
+                // 'items@': {
+                //     controller: 'ItemsController as vm',
+                //     template:require( '../items/items.tmpl.html')
+                // }
             }
         })
 }
+
+export default categoriesConfig;

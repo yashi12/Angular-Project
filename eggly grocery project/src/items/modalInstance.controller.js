@@ -1,6 +1,6 @@
-angular
-    .module('categories.items')
-    .controller('ModalInstanceController', ModalInstanceController);
+// angular
+//     .module('categories.items')
+//     .controller('ModalInstanceController', ModalInstanceController);
 
 ModalInstanceController.$inject = ['$uibModalInstance', 'itemsService'];
 
@@ -17,3 +17,5 @@ function ModalInstanceController($uibModalInstance, ItemsModel) {
         $uibModalInstance.dismiss('dismissed');
     }
 }
+
+export default ModalInstanceController;

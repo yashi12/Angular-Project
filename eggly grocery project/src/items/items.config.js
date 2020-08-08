@@ -1,6 +1,6 @@
-angular
-    .module('categories.items')
-    .config(itemsConfig);
+// angular
+//     .module('categories.items')
+//     .config(itemsConfig);
 
 itemsConfig.$inject = ['$stateProvider'];
 
@@ -10,9 +10,11 @@ function itemsConfig($stateProvider) {
             url: 'categories/:category',
             views: {
                 'items@': {
-                    templateUrl: '../src/items/items.tmpl.html',
+                    template: require('./items.tmpl.html'),
                     controller: 'ItemsController as vm'
                 }
             }
         });
 }
+
+export default itemsConfig;

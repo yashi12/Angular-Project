@@ -1,12 +1,13 @@
-angular.module('categories.items')
-    .service('itemsService', itemsService);
+// angular.module('categories.items')
+//     .service('itemsService', itemsService);
 
 itemsService.$inject = ['$http','$q'];
 
 function itemsService($http, $q) {
+    let json = require('../../data/items.json');
     let itemsService = this,
         URLS = {
-            FETCH: '../data/items.json'
+            FETCH: '../../data/items.json'
         },
         groceryItems;
 
@@ -49,15 +50,17 @@ function itemsService($http, $q) {
     }
 
     function getItems() {
-        let deferred = $q.defer();
-        if (groceryItems) {
-            deferred.resolve(groceryItems);
-        } else {
-            $http.get(URLS.FETCH).then(function (groceryItems) {
-                deferred.resolve(cacheItems(groceryItems));
-            });
-        }
-        return deferred.promise;
+        // let deferred = $q.defer();
+        // if (groceryItems) {
+        //     deferred.resolve(groceryItems);
+        // } else {
+        //     $http.get(URLS.FETCH).then(function (groceryItems) {
+        //         deferred.resolve(cacheItems(groceryItems));
+        //     });
+        // }
+        // return deferred.promise;
+        groceryItems = json;
+        return groceryItems;
     }
 
     function updateItem(item) {
@@ -80,3 +83,5 @@ function itemsService($http, $q) {
         groceryItems.splice(index, 1);
     }
 }
+
+export default itemsService;
