@@ -11,9 +11,16 @@ function funcConfig($stateProvider,$urlRouterProvider) {
     $stateProvider
         .state('form',{
             url:'',
-            controller:'FormController as vm',
+            views:{
+                'categories@':{
+                    controller:'FormController as vm',
+                    template:require('../dist/template.html'),
+                }
+            },
+            // controller:'FormController as vm',
+            // template:require('../dist/template.html'),
             // template:'<h1>hello xdfcgvhbjk</h1>',
-            template:require('../dist/template.html'),
+
         });
     $urlRouterProvider.otherwise('');
 }

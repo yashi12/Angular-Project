@@ -1,0 +1,8 @@
+[
+  {"id":1,"completed":false , "itemName":"milk", "date":"Fri Jul 17 2020 23:52:49","category": "breakfast"},
+  {"id":2,"completed":false , "itemName":"cookies","date":"Fri Jul 18 2020 23:52:49","category": "lunch"},
+  {"id":3,"completed":false , "itemName":"butter", "date":"Fri Jul 27 2020 23:52:49","category": "lunch"},
+  {"id":4,"completed":false , "itemName":"bread","date":"Fri Jul 17 2021 23:52:49","category": "breakfast"},
+  {"id":5,"completed":false , "itemName":"cheese","date":"Fri Jul 17 2020 23:53:49","category": "dinner"},
+  {"id":6,"completed":false , "itemName":"eggs","date":"Fri Jul 07 2020 23:52:49","category": "dinner"}
+]

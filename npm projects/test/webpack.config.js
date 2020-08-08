@@ -9,8 +9,9 @@ module.exports = {
     entry: {
         // app:{import:'./src/index.js', dependOn: 'shared'},
         // module:{import: './src/module.js', dependOn: 'shared'},
-        app:'./src/index.js',
-        modul:'./src/module.js',
+        app: './src/index.js',
+        modul: './src/module1.js',
+        idx: './src/idx.js',
         // shared:'lodash',
     },
     devtool: 'inline-source-map',
@@ -19,7 +20,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title:"Test project",
+            title: "Test project",
             filename: 'index.html',
             template: "./dist/index1.html",
         }),
@@ -37,21 +38,29 @@ module.exports = {
             test: /\.css$/,
             use: ['style-loader', 'css-loader'],
         },
-        {
-            test: /\.html$/,
-            loader: 'html-loader',
-        },
-        {
-            test: /\.js$/,
-            enforce: 'pre',
-            use: ['source-map-loader'],
-        },
-        {
-            test: /\.(png|svg|jpe?g|gif)$/i,
-            use:[
-                'file-loader',
-            ],
-        },
+            {
+                test: /\.html$/,
+                loader: 'html-loader',
+            },
+            {
+                test: /\.js$/,
+                enforce: 'pre',
+                use: ['source-map-loader'],
+            },
+            {
+                test: /\.(png|svg|jpe?g|gif)$/i,
+                // use: ['file-loader'],
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name:'[name].[ext]',
+                            outputPath:'img/',
+                            publicPath:'img/'
+                        }
+                    }
+                ]
+            },
         ],
     },
     optimization: {
