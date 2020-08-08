@@ -2,11 +2,11 @@
 //     .module('categories')
 //     .service('categoriesService', categoriesService);
 import _ from 'underscore';
-
 categoriesService.$inject = ['$http', '$q'];
 
 function categoriesService($http, $q) {
-    let json = require('../../data/categories.json');
+    const json = require('../../data/categories.json');
+    console.log("json",json);
     let categoriesService = this,
         URLS = {
             FETCH: '../../data/categories.json'
@@ -32,6 +32,7 @@ function categoriesService($http, $q) {
     function getCategories() {
         // return (categorieItems) ? $q.when(categorieItems) : $http.get(URLS.FETCH).then(cacheCategories);
         categorieItems = json;
+        console.log("categorie items",categorieItems);
         return categorieItems;
     }
 

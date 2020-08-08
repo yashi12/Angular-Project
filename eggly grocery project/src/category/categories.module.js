@@ -1,11 +1,11 @@
 
 
-import './categories.tmpl.html';
+
 import angular from 'angular';
 import uiRouter from "@uirouter/angularjs";
 
 import itemsModule from '../items/items.module.js';
-
+import './categories.tmpl.html';
 import categoriesConfig from './categories.config.js';
 import categoriesService from './categories.service.js';
 import CategoriesController from './categories.controller.js';

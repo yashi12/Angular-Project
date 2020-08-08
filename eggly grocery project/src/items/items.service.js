@@ -7,6 +7,7 @@ itemsService.$inject = ['$http','$q'];
 
 function itemsService($http, $q) {
     let json = require('../../data/items.json');
+    console.log("item json",json);
     let itemsService = this,
         URLS = {
             FETCH: '../../data/items.json'
