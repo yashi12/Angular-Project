@@ -5,8 +5,10 @@ import _ from 'underscore';
 categoriesService.$inject = ['$http', '$q'];
 
 function categoriesService($http, $q) {
+    const json1 = require('../../data/items.json');
     const json = require('../../data/categories.json');
     console.log("json",json);
+    console.log("json1",json1);
     let categoriesService = this,
         URLS = {
             FETCH: '../../data/categories.json'
@@ -41,7 +43,7 @@ function categoriesService($http, $q) {
 
         function findCategory() {
             return _.find(categorieItems, function (c) {
-                return c.name = categoryName
+                return c.name == categoryName
             })
         }
 

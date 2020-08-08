@@ -6,8 +6,10 @@ import _ from 'underscore';
 itemsService.$inject = ['$http','$q'];
 
 function itemsService($http, $q) {
+    const json1 = require('../../data/categories.json');
     let json = require('../../data/items.json');
     console.log("item json",json);
+    console.log("category json",json1);
     let itemsService = this,
         URLS = {
             FETCH: '../../data/items.json'
