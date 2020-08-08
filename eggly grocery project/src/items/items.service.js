@@ -1,6 +1,8 @@
 // angular.module('categories.items')
 //     .service('itemsService', itemsService);
 
+import _ from 'underscore';
+
 itemsService.$inject = ['$http','$q'];
 
 function itemsService($http, $q) {

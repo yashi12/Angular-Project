@@ -3,7 +3,7 @@
 //     .controller('ItemsController', ItemsController);
 
 import ModalInstanceController from './modalInstance.controller.js';
-
+import uiBootstrap from 'ui-bootstrap4';
 
 ItemsController.$inject = ['$stateParams', 'itemsService', 'categoriesService', '$uibModal'];
 
@@ -33,6 +33,7 @@ function ItemsController($stateParams, itemsService, categoriesService, $uibModa
     }
 
     function openEdit(item) {
+        console.log("openEdit");
         itemsService.setNewItem(item);
         let modalInstance = $uibModal.open({
             ariaLabelledBy: 'modal-title',

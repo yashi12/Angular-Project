@@ -14,10 +14,10 @@ function categoriesConfig($stateProvider) {
                     controller: 'CategoriesController as vm',
                     template: require('./categories.tmpl.html')
                 },
-                // 'items@': {
-                //     controller: 'ItemsController as vm',
-                //     template:require( '../items/items.tmpl.html')
-                // }
+                'items@': {
+                    controller: 'ItemsController as vm',
+                    template:require( '../items/items.tmpl.html')
+                }
             }
         })
 }

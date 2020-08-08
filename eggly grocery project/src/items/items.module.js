@@ -11,12 +11,14 @@ import categoryModule from '../category/categories.module.js';
 import itemsConfig from './items.config.js';
 import itemsService from './items.service.js';
 import ItemsController from './items.controller.js';
+import ModalInstanceController from './modalInstance.controller.js';
 
 
 const itemsModule = angular.module('categories.items', ['categories'])
     .config(itemsConfig)
     .service('itemsService', itemsService)
-    .controller('ItemsController', ItemsController);
+    .controller('ItemsController', ItemsController)
+    .controller('ModalInstanceController',ModalInstanceController);
 
 export default itemsModule;
 

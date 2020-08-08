@@ -2,6 +2,7 @@
 //     .module('categories.items')
 //     .controller('ModalInstanceController', ModalInstanceController);
 
+import uiBootstrap from 'ui-bootstrap4';
 ModalInstanceController.$inject = ['$uibModalInstance', 'itemsService'];
 
 function ModalInstanceController($uibModalInstance, ItemsModel) {
@@ -19,3 +20,5 @@ function ModalInstanceController($uibModalInstance, ItemsModel) {
 }
 
 export default ModalInstanceController;
+
+console.log("ModalInstanceController");
