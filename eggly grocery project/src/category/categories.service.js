@@ -29,19 +29,21 @@ function categoriesService($http, $q) {
         categorieItems = extract(result);
         return categorieItems;
     }
-    console.log("1");
      async function getCategories() {
-         console.log("2");
         // return (categorieItems) ? $q.when(categorieItems) : $http.get(URLS.FETCH).then(cacheCategories);
+         // categorieItems = json;
+         if(categorieItems){
+             console.log("data");
+             return $q.when(categorieItems);
+         }
         await import('../../data/categories.json')
             .then(({default:category})=>{
+                console.log("fetch");
                 categorieItems = category;
             });
-        // categorieItems = json;
          console.log("await categorie items", categorieItems);
          return categorieItems;
     }
-    console.log("3");
     function getCategoryByName(categoryName) {
         let deferred = $q.defer();
 

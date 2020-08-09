@@ -22,14 +22,15 @@ function ItemsController($stateParams, itemsService, categoriesService, $uibModa
     activate();
 
     function activate() {
-        // return itemsService.getItems()
-        //     .then(function (items) {
-        //         vm.groceryItems = items;
-        //     }).catch(function (reason) {
-        //         alert(reason);
-        //         console.log(reason);
-        //     });
-        vm.groceryItems = itemsService.getItems();
+        console.log("items service" ,itemsService.getItems());
+        return itemsService.getItems()
+            .then(function (items) {
+                vm.groceryItems = items;
+            }).catch(function (reason) {
+                alert(reason);
+                console.log(reason);
+            });
+        // vm.groceryItems = itemsService.getItems();
     }
 
     function openEdit(item) {

@@ -54,17 +54,19 @@ function itemsService($http, $q) {
         return deferred.promise;
     }
 
-    function getItems() {
+    async function getItems() {
         // let deferred = $q.defer();
-        // http.get(URLS.FETCH,function (groceryItems) {
-        //     deferred.resolve(cacheItems(groceryItems));
-        // });
         // $http.get(URLS.FETCH).then(function (groceryItems) {
         //     deferred.resolve(cacheItems(groceryItems));
         // });
-        // }
         // return deferred.promise;
-        groceryItems = json;
+
+        await import('../../data/items.json')
+            .then(({default:items})=>{
+                console.log("items");
+                groceryItems = items;
+            })
+        // groceryItems = json;
         return groceryItems;
     }
 

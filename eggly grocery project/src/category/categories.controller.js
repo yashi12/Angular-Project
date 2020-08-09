@@ -13,6 +13,7 @@ function CategoriesController(categoriesService) {
             vm.categorieItems = result;
             console.log("vm inside",vm.categorieItems);
             console.log("promise result",result);
+            categoriesService.getCategories();
         });
     // categoriesService.getCategories();
     console.log("vm",vm.categorieItems);
