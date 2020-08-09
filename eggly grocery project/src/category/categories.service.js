@@ -2,13 +2,12 @@
 //     .module('categories')
 //     .service('categoriesService', categoriesService);
 import _ from 'underscore';
+
 categoriesService.$inject = ['$http', '$q'];
 
 function categoriesService($http, $q) {
-    const json1 = require('../../data/items.json');
     const json = require('../../data/categories.json');
-    console.log("json",json);
-    console.log("json1",json1);
+    console.log("json", json);
     let categoriesService = this,
         URLS = {
             FETCH: '../../data/categories.json'
@@ -30,14 +29,19 @@ function categoriesService($http, $q) {
         categorieItems = extract(result);
         return categorieItems;
     }
-
-    function getCategories() {
+    console.log("1");
+     async function getCategories() {
+         console.log("2");
         // return (categorieItems) ? $q.when(categorieItems) : $http.get(URLS.FETCH).then(cacheCategories);
-        categorieItems = json;
-        console.log("categorie items",categorieItems);
-        return categorieItems;
+        await import('../../data/categories.json')
+            .then(({default:category})=>{
+                categorieItems = category;
+            });
+        // categorieItems = json;
+         console.log("await categorie items", categorieItems);
+         return categorieItems;
     }
-
+    console.log("3");
     function getCategoryByName(categoryName) {
         let deferred = $q.defer();
 

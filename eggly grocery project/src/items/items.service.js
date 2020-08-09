@@ -2,14 +2,14 @@
 //     .service('itemsService', itemsService);
 
 import _ from 'underscore';
+// import 'http-request';
 
 itemsService.$inject = ['$http','$q'];
 
 function itemsService($http, $q) {
-    const json1 = require('../../data/categories.json');
     let json = require('../../data/items.json');
     console.log("item json",json);
-    console.log("category json",json1);
+
     let itemsService = this,
         URLS = {
             FETCH: '../../data/items.json'
@@ -56,12 +56,12 @@ function itemsService($http, $q) {
 
     function getItems() {
         // let deferred = $q.defer();
-        // if (groceryItems) {
-        //     deferred.resolve(groceryItems);
-        // } else {
-        //     $http.get(URLS.FETCH).then(function (groceryItems) {
-        //         deferred.resolve(cacheItems(groceryItems));
-        //     });
+        // http.get(URLS.FETCH,function (groceryItems) {
+        //     deferred.resolve(cacheItems(groceryItems));
+        // });
+        // $http.get(URLS.FETCH).then(function (groceryItems) {
+        //     deferred.resolve(cacheItems(groceryItems));
+        // });
         // }
         // return deferred.promise;
         groceryItems = json;
