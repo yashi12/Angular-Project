@@ -9,6 +9,7 @@ import './categories.tmpl.html';
 import categoriesConfig from './categories.config.js';
 import categoriesService from './categories.service.js';
 import CategoriesController from './categories.controller.js';
+import "ngstorage";
 
 
 
@@ -16,7 +17,7 @@ import CategoriesController from './categories.controller.js';
 
 // const categoryModule = angular.module('categories', ['ui.router', 'categories.items']);
 // const categoryModule = angular.module('categories', [uiRouter, itemsModule])
-const categoryModule = angular.module('categories', [uiRouter,'categories.items'])
+const categoryModule = angular.module('categories', [uiRouter,'categories.items','ngStorage'])
     .config(categoriesConfig)
     .service('categoriesService',categoriesService)
     .controller('CategoriesController',CategoriesController);

@@ -5,6 +5,7 @@ import './appMainPage.css';
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import uiBootstrap from 'ui-bootstrap4';
+
 // import _ from 'underscore';
 
 import categoryModule from './category/categories.module.js';

@@ -1,26 +1,27 @@
 // angular
 //     .module('categories')
 //     .controller('CategoriesController',CategoriesController);
+// import 'ngstorage';
+CategoriesController.$inject = ['categoriesService','$localStorage'];
 
-CategoriesController.$inject = ['categoriesService'];
-
-function CategoriesController(categoriesService) {
+function CategoriesController(categoriesService,$localStorage) {
     console.log(" category controller func");
     let vm = this;
+    if ($localStorage.category) {
+        vm.categorieItems = $localStorage.category;
+    }
+    else{
+        categoriesService.getCategories()
+            .then(function (result) {
+                vm.categorieItems = result;
+                $localStorage.category = vm.categorieItems;
+                console.log("vm inside",vm.categorieItems);
+                console.log("promise result",result);
+                categoriesService.getCategories();
+            });
+        console.log("vm",vm.categorieItems);
+    }
 
-    categoriesService.getCategories()
-        .then(function (result) {
-            vm.categorieItems = result;
-            console.log("vm inside",vm.categorieItems);
-            console.log("promise result",result);
-            categoriesService.getCategories();
-        });
-    // categoriesService.getCategories();
-    console.log("vm",vm.categorieItems);
-    // categoriesService.getCategories()
-    //     .then(function (result) {
-    //         vm.categorieItems = result;
-    //     })
 }
 
 export default CategoriesController;
