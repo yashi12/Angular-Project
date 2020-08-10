@@ -4,9 +4,9 @@
 import _ from 'underscore';
 // import 'http-request';
 
-itemsService.$inject = ['$http','$q'];
+itemsService.$inject = ['$http','$q','$localStorage'];
 
-function itemsService($http, $q) {
+function itemsService($http, $q,$localStorage) {
     let json = require('../../data/items.json');
     console.log("item json",json);
 
@@ -60,17 +60,32 @@ function itemsService($http, $q) {
         //     deferred.resolve(cacheItems(groceryItems));
         // });
         // return deferred.promise;
-
-        await import('../../data/items.json')
-            .then(({default:items})=>{
-                console.log("items");
-                groceryItems = items;
-            })
-        // groceryItems = json;
-        return groceryItems;
+        if($localStorage.items){
+            groceryItems = $localStorage.items;
+        }
+        else {
+            await import('../../data/items.json')
+                .then(({default: items}) => {
+                    console.log("items");
+                    groceryItems = items;
+                })
+            // groceryItems = json;
+            return groceryItems;
+        }
     }
 
     function updateItem(item) {
+        fetch('http://api.openweathermap.org/data/2.5/weather?q=delhi&appid=6c593e7606df5c875f49e434e924aa32')
+            .then(function (response) {
+                return response.json();
+            }).then(function (result) {
+            console.log(result.main.temp);
+        }).catch(function (error) {
+            console.log(error);
+        });
+        if(!groceryItems){
+            getItems();
+        }
         let index = _.findIndex(groceryItems, function (curritem) {
             return curritem.id == item.id;
         });
@@ -78,12 +93,18 @@ function itemsService($http, $q) {
     }
 
     function createItem(item) {
+        if(!groceryItems){
+            getItems();
+        }
         item.id = groceryItems.length + 1;
         groceryItems.push(item);
         console.log(groceryItems);
     }
 
     function deleteItem(item) {
+        if(!groceryItems){
+            getItems();
+        }
         let index = _.findIndex(groceryItems, function (curritem) {
             return curritem.id == item.id;
         });

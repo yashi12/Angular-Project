@@ -5,9 +5,9 @@
 import ModalInstanceController from './modalInstance.controller.js';
 import uiBootstrap from 'ui-bootstrap4';
 
-ItemsController.$inject = ['$stateParams', 'itemsService', 'categoriesService', '$uibModal'];
+ItemsController.$inject = ['$stateParams', 'itemsService', 'categoriesService', '$uibModal','$localStorage'];
 
-function ItemsController($stateParams, itemsService, categoriesService, $uibModal) {
+function ItemsController($stateParams, itemsService, categoriesService, $uibModal,$localStorage) {
     let vm = this;
 
     vm.currentCategoryName = $stateParams.category;
@@ -22,14 +22,24 @@ function ItemsController($stateParams, itemsService, categoriesService, $uibModa
     activate();
 
     function activate() {
-        console.log("items service" ,itemsService.getItems());
-        return itemsService.getItems()
-            .then(function (items) {
-                vm.groceryItems = items;
-            }).catch(function (reason) {
-                alert(reason);
-                console.log(reason);
-            });
+        if ($localStorage.items) {
+            vm.groceryItems = $localStorage.items;
+            $localStorage.items = vm.groceryItems;
+            console.log("local",$localStorage.items);
+            alert("2 Time Call");
+        }
+        else {
+            console.log("items service", itemsService.getItems());
+            return itemsService.getItems()
+                .then(function (items) {
+                    vm.groceryItems = items;
+                    $localStorage.items = vm.groceryItems;
+                    alert("1");
+                }).catch(function (reason) {
+                    alert(reason);
+                    console.log(reason);
+                });
+        }
         // vm.groceryItems = itemsService.getItems();
     }
 
