@@ -12,9 +12,10 @@ import itemsConfig from './items.config.js';
 import itemsService from './items.service.js';
 import ItemsController from './items.controller.js';
 import ModalInstanceController from './modalInstance.controller.js';
+import 'ngstorage';
 
 
-const itemsModule = angular.module('categories.items', ['categories'])
+const itemsModule = angular.module('categories.items', ['categories','ngStorage'])
     .config(itemsConfig)
     .service('itemsService', itemsService)
     .controller('ItemsController', ItemsController)
